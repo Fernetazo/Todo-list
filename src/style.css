@@ -1,0 +1,41 @@
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    width: 1200px;
+    height: 600px;
+}
+
+.topBar {
+    display:flex;
+    height: 80px;
+    border: 1px solid red;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid violet;
+    height: 100%;
+}
+
+.navBar {
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 200px;
+    border: 1px solid yellow;
+}
+
+.navBarOptions {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 400px;
+}
+
+.mainDisplay {
+    display:flex;
+    flex-direction: column;
+    border: 1px solid black;
+}
