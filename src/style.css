@@ -8,6 +8,8 @@ body {
 
 .topBar {
     display:flex;
+    flex-direction: row;
+    align-items: center;
     height: 80px;
     border: 1px solid red;
 }
@@ -31,11 +33,29 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    height: 400px;
+    height: 200px;
 }
 
 .mainDisplay {
     display:flex;
     flex-direction: column;
+    width: 100%;
     border: 1px solid black;
+}
+
+.todoItem, .todoLeftSide, .todoRightSide {
+    display: flex;
+    flex-direction: row;
+}
+
+.todoLeftSide, .todoRightSide {
+    width: 50%;
+}
+
+.todoLeftSide {
+    justify-content: flex-start;
+}
+
+.todoRightSide {
+    justify-content: flex-end;
 }
