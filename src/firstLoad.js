@@ -1,8 +1,7 @@
+import {mainTODOlist, projects} from './index.js';
+
 const firstLoad = () => {
     
-    let mainTODOlist = [];
-    let projects = [];
-
     class Project {
         constructor(title, description) {
             this.title = title;
@@ -36,9 +35,6 @@ const firstLoad = () => {
     projects[1].TODOlist.push(new singleTODO('High', true,'Check model T', date,'I really want a Tesla'));
     projects[1].TODOlist.push(new singleTODO('Low', true,'Buy the goddam car', date,'Oh yeah!'));
 
-    console.table(mainTODOlist);
-    console.table(projects);
-
 }
 
-export default firstLoad;
+export default (firstLoad);
