@@ -59,3 +59,26 @@ main {
 .todoRightSide {
     justify-content: flex-end;
 }
+
+.newProjectModal {
+    position: fixed;
+    z-index: 1; /* Sit on top */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.65); 
+    opacity: 1;
+    transition: all 0.4s;
+    visibility: visible;
+}
+
+.newProjectform {
+    display: flex;
+    flex-direction: column;
+    margin: 10% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 20%; 
+    border-radius: 20px;
+}

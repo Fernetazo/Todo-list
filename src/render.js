@@ -1,4 +1,5 @@
 import {mainTODOlist, projects} from './index.js';
+import {submitNewProject} from './actions.js';
 
 const firstRender = () => {
 
@@ -21,6 +22,46 @@ const prepareListeners = () => {
     const home = document.querySelector('.home');
     home.addEventListener('click', renderHome);
 
+    const newProjectButton = document.querySelector('.newProjectButton');
+    newProjectButton.addEventListener('click', showNewProjectModal);
+}
+
+const showNewProjectModal = () => {
+    
+    const newProjectModal = document.createElement('div');
+    const form = document.createElement('form');
+    const titleLabel = document.createElement('label');
+    const titleInput = document.createElement('input');
+    const descriptionLabel = document.createElement('label');
+    const descriptionInput = document.createElement('input');
+    const submitButton = document.createElement('button');
+
+    newProjectModal.classList.add('newProjectModal');
+    form.classList.add('newProjectform');
+    form.onsubmit = () => {return false};
+    titleLabel.textContent = 'Title:';
+    descriptionLabel.textContent = 'Description:';
+    submitButton.textContent = 'Submit new project';
+    submitButton.addEventListener('click', submitNewProject);
+
+    form.appendChild(titleLabel);
+    form.appendChild(titleInput);
+    form.appendChild(descriptionLabel);
+    form.appendChild(descriptionInput);
+    form.appendChild(submitButton);
+    newProjectModal.appendChild(form);
+    document.querySelector('body').appendChild(newProjectModal);
+
+    window.onclick = function(event) {
+        if (event.target == newProjectModal) {
+            newProjectModal.style.opacity = "0";
+            newProjectModal.style.visibility = "hidden";
+            
+            setTimeout(() => {
+                document.querySelector('body').removeChild(newProjectModal);
+            }, 200);
+        }
+    }
 }
 
 const clearMainDisplay = () => {
