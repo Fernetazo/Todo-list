@@ -1,5 +1,28 @@
 import {mainTODOlist, projects} from './index.js';
 
+const firstRender = () => {
+
+    let projectItems = document.querySelector('.projectItems');
+
+    projects.forEach(e => {
+        let projectItem = document.createElement('div');
+        projectItem.classList.add('projectItem');
+        projectItem.textContent = e.title;
+        projectItem.addEventListener('click', renderProject);
+        projectItems.appendChild(projectItem);
+    });
+    
+    prepareListeners();
+    renderTODOList(mainTODOlist);
+}
+
+const prepareListeners = () => {
+    
+    const home = document.querySelector('.home');
+    home.addEventListener('click', renderHome);
+
+}
+
 const clearMainDisplay = () => {
 
     const main = document.querySelector('main');
@@ -8,6 +31,11 @@ const clearMainDisplay = () => {
     main.removeChild(document.querySelector('.mainDisplay'));
     main.appendChild(mainDisplay);
 
+}
+
+const renderHome = () => {
+    clearMainDisplay();
+    renderTODOList(mainTODOlist);
 }
 
 const renderProject = (e) => {
@@ -44,25 +72,10 @@ const renderProject = (e) => {
         
 };
 
-function render() {
-
-    let projectItems = document.querySelector('.projectItems');
-
-    projects.forEach(e => {
-        let projectItem = document.createElement('div');
-        projectItem.classList.add('projectItem');
-        projectItem.textContent = e.title;
-        projectItem.addEventListener('click', renderProject);
-        projectItems.appendChild(projectItem);
-    });
-
-    renderTODOList(mainTODOlist);
-}
-
 const renderTODOList = (target) => {
 
-
-    let mainList = document.querySelector('.todos');
+    let todos = document.createElement('div');
+    todos.classList.add('todos');
     
     target.forEach(e => {
 
@@ -113,8 +126,10 @@ const renderTODOList = (target) => {
         rightSide.appendChild(deleteButton);
         todoItem.appendChild(leftSide);
         todoItem.appendChild(rightSide);
-        mainList.appendChild(todoItem);
+        todos.appendChild(todoItem);
     });
+
+    document.querySelector('.mainDisplay').appendChild(todos);
 }
 
-export default (render);
+export default (firstRender);
