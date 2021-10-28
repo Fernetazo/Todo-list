@@ -1,4 +1,5 @@
 import firstLoad from './firstLoad';
+import render from './render';
 import './style.css';
 
 let mainTODOlist = [];
@@ -6,7 +7,6 @@ let projects = [];
 
 firstLoad();
 
-console.log(mainTODOlist);
-console.log(projects);
+render();
 
 export  {mainTODOlist, projects};

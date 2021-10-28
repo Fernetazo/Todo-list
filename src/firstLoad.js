@@ -35,6 +35,6 @@ const firstLoad = () => {
     projects[1].TODOlist.push(new singleTODO('High', true,'Check model T', date,'I really want a Tesla'));
     projects[1].TODOlist.push(new singleTODO('Low', true,'Buy the goddam car', date,'Oh yeah!'));
 
-}
+};
 
 export default (firstLoad);
