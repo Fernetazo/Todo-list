@@ -1,4 +1,4 @@
-import {mainTODOlist, projects} from './index.js';
+import {mainTODOlist, projects, Project} from './index.js';
 import {submitNewProject} from './actions.js';
 
 const firstRender = () => {
@@ -37,7 +37,7 @@ const showNewProjectModal = () => {
     const submitButton = document.createElement('button');
 
     newProjectModal.classList.add('newProjectModal');
-    form.classList.add('newProjectform');
+    form.classList.add('newProjectForm');
     form.onsubmit = () => {return false};
     titleLabel.textContent = 'Title:';
     descriptionLabel.textContent = 'Description:';

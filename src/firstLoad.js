@@ -1,25 +1,7 @@
-import {mainTODOlist, projects} from './index.js';
+import {mainTODOlist, projects, Project, singleTODO} from './index.js';
 
 const firstLoad = () => {
     
-    class Project {
-        constructor(title, description) {
-            this.title = title;
-            this.description = description;
-            this.TODOlist = [];
-        }
-    };
-
-    class singleTODO {
-        constructor(priority, checked, title, dueDate, details) {
-            this.priority = priority;
-            this.checked = checked;
-            this.title = title;
-            this.dueDate = dueDate;
-            this.details = details;
-        }
-    };
-
     let date = Date();
 
     mainTODOlist.push(new singleTODO('High', true,'Do the dishes', date,'Remember to use the sponge!'));
