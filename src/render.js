@@ -1,5 +1,5 @@
 import {mainTODOlist, projects, Project} from './index.js';
-import {submitNewProject} from './actions.js';
+import {submitNewProject, makeNewTask, deleteProject} from './actions.js';
 
 const firstRender = () => {
 
@@ -11,6 +11,19 @@ const firstRender = () => {
         projectItem.classList.add('projectItem');
         projectItem.textContent = e.title;
         projectItem.addEventListener('click', renderProject);
+
+        let newTaskButton = document.createElement('button');
+        newTaskButton.classList.add('newProjectTaskButton');
+        newTaskButton.textContent = '+';
+        newTaskButton.addEventListener('click', makeNewTask);
+        projectItem.appendChild(newTaskButton);
+
+        let deleteProjectButton = document.createElement('button');
+        deleteProjectButton.classList.add('deleteProjectButton');
+        deleteProjectButton.textContent = 'del';
+        deleteProjectButton.addEventListener('click', deleteProject);
+        projectItem.appendChild(deleteProjectButton);
+
         projectItems.appendChild(projectItem);
         
     });

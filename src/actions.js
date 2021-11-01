@@ -3,7 +3,6 @@ import {renderNewProjectItem} from './render';
 
 function submitNewProject() {
 
-    
     let newProjectForm = document.querySelector('.newProjectForm');
     let title = newProjectForm[0].value;
     let description = newProjectForm[1].value;
@@ -13,4 +12,12 @@ function submitNewProject() {
     
 }
 
-export  {submitNewProject};
+function makeNewTask() {
+
+}
+
+function deleteProject() {
+    
+}
+
+export  {submitNewProject, makeNewTask, deleteProject};
