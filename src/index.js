@@ -1,5 +1,5 @@
-import firstLoad from './firstLoad';
-import firsRender from './render';
+import {firstLoad} from './firstLoad';
+import {firstRender} from './render';
 import './style.css';
 
 let mainTODOlist = [];
@@ -25,6 +25,6 @@ class singleTODO {
 
 firstLoad();
 
-firsRender();
+firstRender();
 
 export  {mainTODOlist, projects, Project, singleTODO};

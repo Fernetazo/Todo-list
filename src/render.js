@@ -6,15 +6,30 @@ const firstRender = () => {
     let projectItems = document.querySelector('.projectItems');
 
     projects.forEach(e => {
+        
         let projectItem = document.createElement('div');
         projectItem.classList.add('projectItem');
         projectItem.textContent = e.title;
         projectItem.addEventListener('click', renderProject);
         projectItems.appendChild(projectItem);
+        
     });
     
     prepareListeners();
     renderTODOList(mainTODOlist);
+}
+
+const renderNewProjectItem = () => {
+
+    console.log(projects);
+
+    let projectItems = document.querySelector('.projectItems');
+
+    let projectItem = document.createElement('div');
+    projectItem.classList.add('projectItem');
+    projectItem.textContent = projects[projects.length - 1].title;
+    projectItem.addEventListener('click', renderProject);
+    projectItems.appendChild(projectItem);
 }
 
 const prepareListeners = () => {
@@ -75,6 +90,7 @@ const clearMainDisplay = () => {
 }
 
 const renderHome = () => {
+
     clearMainDisplay();
     renderTODOList(mainTODOlist);
 }
@@ -173,4 +189,4 @@ const renderTODOList = (target) => {
     document.querySelector('.mainDisplay').appendChild(todos);
 }
 
-export default (firstRender);
+export {firstRender, renderNewProjectItem};
