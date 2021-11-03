@@ -9,21 +9,26 @@ const firstRender = () => {
         
         let projectItem = document.createElement('div');
         projectItem.classList.add('projectItem');
-        projectItem.textContent = e.title;
-        projectItem.addEventListener('click', renderProject);
+        
+        let projectTitle = document.createElement('div');
+        projectTitle.textContent = e.title;
+        projectTitle.addEventListener('click', renderProject);
 
         let newTaskButton = document.createElement('button');
         newTaskButton.classList.add('newProjectTaskButton');
         newTaskButton.textContent = '+';
         newTaskButton.addEventListener('click', makeNewTask);
-        projectItem.appendChild(newTaskButton);
 
         let deleteProjectButton = document.createElement('button');
         deleteProjectButton.classList.add('deleteProjectButton');
         deleteProjectButton.textContent = 'del';
         deleteProjectButton.addEventListener('click', deleteProject);
-        projectItem.appendChild(deleteProjectButton);
+        deleteProjectButton.addEventListener('click', deleteProjectDOM);
 
+        projectItem.appendChild(projectTitle);
+        projectItem.appendChild(deleteProjectButton);
+        projectItem.appendChild(newTaskButton);
+        
         projectItems.appendChild(projectItem);
         
     });
@@ -34,15 +39,36 @@ const firstRender = () => {
 
 const renderNewProjectItem = () => {
 
-    console.log(projects);
-
     let projectItems = document.querySelector('.projectItems');
 
     let projectItem = document.createElement('div');
     projectItem.classList.add('projectItem');
-    projectItem.textContent = projects[projects.length - 1].title;
-    projectItem.addEventListener('click', renderProject);
+
+    let projectTitle = document.createElement('div');
+    projectTitle.textContent = projects[projects.length - 1].title;
+    projectTitle.addEventListener('click', renderProject);
+
+    let newTaskButton = document.createElement('button');
+    newTaskButton.classList.add('newProjectTaskButton');
+    newTaskButton.textContent = '+';
+    newTaskButton.addEventListener('click', makeNewTask);
+
+    let deleteProjectButton = document.createElement('button');
+    deleteProjectButton.classList.add('deleteProjectButton');
+    deleteProjectButton.textContent = 'del';
+    deleteProjectButton.addEventListener('click', deleteProject);
+    deleteProjectButton.addEventListener('click', deleteProjectDOM);
+
+    projectItem.appendChild(projectTitle);
+    projectItem.appendChild(deleteProjectButton);
+    projectItem.appendChild(newTaskButton);
+    
     projectItems.appendChild(projectItem);
+}
+
+const deleteProjectDOM = (e) => {
+    
+    e.target.parentNode.parentNode.removeChild(e.target.parentNode);
 }
 
 const prepareListeners = () => {
@@ -111,7 +137,6 @@ const renderHome = () => {
 const renderProject = (e) => {
 
     clearMainDisplay();
-    
     const targetProject = projects.find( (project) => project.title == e.target.textContent );
 
     let mainDisplay = document.querySelector('.mainDisplay');
