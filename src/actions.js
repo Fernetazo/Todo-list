@@ -1,5 +1,5 @@
 import {mainTODOlist, singleTODO, projects, Project} from './index.js';
-import {renderNewProjectItem, renderTODOList, renderSingleTODO} from './render';
+import {renderNewProjectItem, renderSingleNewProjectItem, renderTODOList, renderSingleTODO} from './render';
 
 function submitNewProject() {
 
@@ -7,7 +7,7 @@ function submitNewProject() {
     let title = newProjectForm[0].value;
     let description = newProjectForm[1].value;
     projects.push(new Project(title, description));
-    renderNewProjectItem();
+    renderSingleNewProjectItem(projects.at(-1));
     
 }
 

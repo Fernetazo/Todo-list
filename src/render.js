@@ -6,40 +6,27 @@ const firstRender = () => {
     let projectItems = document.querySelector('.projectItems');
 
     projects.forEach(e => {
-        
-        let projectItem = document.createElement('div');
-        projectItem.classList.add('projectItem');
-        
-        let projectTitle = document.createElement('div');
-        projectTitle.textContent = e.title;
-        projectTitle.addEventListener('click', renderProject);
-
-        let deleteProjectButton = document.createElement('button');
-        deleteProjectButton.classList.add('deleteProjectButton');
-        deleteProjectButton.textContent = 'del';
-        deleteProjectButton.addEventListener('click', deleteProject);
-        deleteProjectButton.addEventListener('click', deleteProjectDOM);
-
-        projectItem.appendChild(projectTitle);
-        projectItem.appendChild(deleteProjectButton);
-        
-        projectItems.appendChild(projectItem);
-        
+        projectItems.appendChild(renderNewProjectItem(e));
     });
     
     prepareListeners();
     renderTODOList(mainTODOlist);
+    
 }
 
-const renderNewProjectItem = () => {
+const renderSingleNewProjectItem = (e) => {
 
     let projectItems = document.querySelector('.projectItems');
+    projectItems.appendChild(renderNewProjectItem(e));
+}
+
+const renderNewProjectItem = (e) => {
 
     let projectItem = document.createElement('div');
     projectItem.classList.add('projectItem');
 
     let projectTitle = document.createElement('div');
-    projectTitle.textContent = projects[projects.length - 1].title;
+    projectTitle.textContent = e.title;
     projectTitle.addEventListener('click', renderProject);
 
     let deleteProjectButton = document.createElement('button');
@@ -51,7 +38,8 @@ const renderNewProjectItem = () => {
     projectItem.appendChild(projectTitle);
     projectItem.appendChild(deleteProjectButton);
     
-    projectItems.appendChild(projectItem);
+    return projectItem;
+
 }
 
 const deleteProjectDOM = (e) => {
@@ -158,20 +146,19 @@ const renderTODOList = (target) => {
     todos.classList.add('todos');
     
     target.forEach(e => {
-        
         todos.appendChild(renderTODOItem(e));
-
     });
 
     document.querySelector('.mainDisplay').appendChild(todos);
-
     renderNewTaskButton();
+    
 }
 
 const renderSingleTODO = (e) => {
 
     let todos = document.querySelector('.todos');
     todos.appendChild(renderTODOItem(e));
+
 }
 
 const renderTODOItem = (e) => {
@@ -248,4 +235,4 @@ const renderNewTaskButton = () => {
 
 }
 
-export {firstRender, renderNewProjectItem, renderTODOList, renderSingleTODO};
+export {firstRender, renderNewProjectItem, renderSingleNewProjectItem, renderTODOList, renderSingleTODO};
