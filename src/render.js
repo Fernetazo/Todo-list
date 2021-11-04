@@ -14,11 +14,6 @@ const firstRender = () => {
         projectTitle.textContent = e.title;
         projectTitle.addEventListener('click', renderProject);
 
-        let newTaskButton = document.createElement('button');
-        newTaskButton.classList.add('newProjectTaskButton');
-        newTaskButton.textContent = '+';
-        newTaskButton.addEventListener('click', makeNewTask);
-
         let deleteProjectButton = document.createElement('button');
         deleteProjectButton.classList.add('deleteProjectButton');
         deleteProjectButton.textContent = 'del';
@@ -27,7 +22,6 @@ const firstRender = () => {
 
         projectItem.appendChild(projectTitle);
         projectItem.appendChild(deleteProjectButton);
-        projectItem.appendChild(newTaskButton);
         
         projectItems.appendChild(projectItem);
         
@@ -222,6 +216,29 @@ const renderTODOList = (target) => {
     });
 
     document.querySelector('.mainDisplay').appendChild(todos);
+
+    renderNewTaskButton();
+}
+
+const renderNewTaskButton = () => {
+
+    let newTaskButtonContainer = document.createElement('div');
+    let newTaskButton = document.createElement('button') ;
+    let newTaskText = document.createElement('div');
+
+    newTaskButtonContainer.classList.add('newTaskButtonContainer');
+    newTaskButton.classList.add('newTaskButton');
+    newTaskText.classList.add('newTaskText');
+
+    newTaskButton.textContent = '+';
+    newTaskText.textContent = 'Add new task';
+    newTaskButtonContainer.addEventListener('click', makeNewTask);
+
+    newTaskButtonContainer.appendChild(newTaskButton);
+    newTaskButtonContainer.appendChild(newTaskText);
+
+    document.querySelector('.mainDisplay').appendChild(newTaskButtonContainer);
+
 }
 
 export {firstRender, renderNewProjectItem};

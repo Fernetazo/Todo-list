@@ -12,7 +12,7 @@ function submitNewProject() {
 }
 
 function makeNewTask() {
-
+    console.log('TODO');
 }
 
 function deleteProject(e) {
