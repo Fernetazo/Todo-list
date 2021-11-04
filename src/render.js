@@ -145,13 +145,11 @@ const renderProject = (e) => {
     let projectHeader = document.createElement('div');
     let projectTitle = document.createElement('div');
     let projectDescription = document.createElement('div');
-    let todos = document.createElement('div');
 
     projectItem.classList.add('projectItem');
     projectHeader.classList.add('projectHeader');
     projectTitle.classList.add('projectTitle');
     projectDescription.classList.add('projectDescription');
-    todos.classList.add('todos');
 
     projectTitle.textContent = targetProject.title;
     projectDescription.textContent = targetProject.description;
@@ -159,7 +157,6 @@ const renderProject = (e) => {
     projectHeader.appendChild(projectTitle);
     projectHeader.appendChild(projectDescription);
     projectItem.appendChild(projectHeader);
-    projectItem.appendChild(todos);
 
     mainDisplay.appendChild(projectItem);
 
