@@ -1,5 +1,5 @@
 import {mainTODOlist, singleTODO, projects, Project} from './index.js';
-import {renderNewProjectItem} from './render';
+import {renderNewProjectItem, renderTODOList, renderSingleTODO} from './render';
 
 function submitNewProject() {
 
@@ -20,13 +20,14 @@ function makeNewTask() {
 
         let index = projects.findIndex(project => project.title == target.textContent);
         projects[index].TODOlist.push(new singleTODO('High', true,'New task example', Date(),'Details details and details'));
+        renderSingleTODO(projects[index].TODOlist.at(-1));
         
     } else {
 
         mainTODOlist.push(new singleTODO('High', true,'New task example', Date(),'Details details and details'));
+        renderSingleTODO(mainTODOlist.at(-1));
 
     }
-    
 }
 
 function deleteProject(e) {
