@@ -11,7 +11,7 @@ const firstRender = () => {
     
     prepareListeners();
     renderTODOList(mainTODOlist);
-    
+
 }
 
 const renderSingleNewProjectItem = (e) => {
@@ -89,6 +89,46 @@ const showNewProjectModal = () => {
             
             setTimeout(() => {
                 document.querySelector('body').removeChild(newProjectModal);
+            }, 200);
+        }
+    }
+}
+
+const showNewTaskModal = () => {
+    
+    const newTaskModal = document.createElement('div');
+    const form = document.createElement('form');
+    const priority = document.createElement('input');
+    const title = document.createElement('input');
+    const dueDate = document.createElement('input');
+    const details = document.createElement('input');
+    const submitButton = document.createElement('button');
+
+    newTaskModal.classList.add('newTaskModal');
+    form.classList.add('newTaskForm');
+    form.onsubmit = () => {return false};
+    priority.placeholder = 'Priority';
+    title.placeholder = 'Title';
+    dueDate.placeholder = 'Date';
+    details.placeholder = 'Details';
+    submitButton.textContent = 'Submit new task';
+    submitButton.addEventListener('click', makeNewTask);
+
+    form.appendChild(priority);
+    form.appendChild(title);
+    form.appendChild(dueDate);
+    form.appendChild(details);
+    form.appendChild(submitButton);
+    newTaskModal.appendChild(form);
+    document.querySelector('body').appendChild(newTaskModal);
+
+    window.onclick = function(event) {
+        if (event.target == newTaskModal) {
+            newTaskModal.style.opacity = "0";
+            newTaskModal.style.visibility = "hidden";
+            
+            setTimeout(() => {
+                document.querySelector('body').removeChild(newTaskModal);
             }, 200);
         }
     }
@@ -226,7 +266,7 @@ const renderNewTaskButton = () => {
 
     newTaskButton.textContent = '+';
     newTaskText.textContent = 'Add new task';
-    newTaskButtonContainer.addEventListener('click', makeNewTask);
+    newTaskButtonContainer.addEventListener('click', showNewTaskModal);
 
     newTaskButtonContainer.appendChild(newTaskButton);
     newTaskButtonContainer.appendChild(newTaskText);

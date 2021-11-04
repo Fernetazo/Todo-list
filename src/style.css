@@ -60,7 +60,7 @@ main {
     justify-content: flex-end;
 }
 
-.newProjectModal {
+.newProjectModal, .newTaskModal {
     position: fixed;
     z-index: 1; /* Sit on top */
     top: 0;
@@ -73,7 +73,7 @@ main {
     visibility: visible;
 }
 
-.newProjectForm {
+.newProjectForm, .newTaskForm {
     display: flex;
     flex-direction: column;
     margin: 10% auto; /* 15% from the top and centered */

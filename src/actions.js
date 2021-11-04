@@ -16,15 +16,21 @@ function makeNewTask() {
     let todos = document.querySelector('.todos');
     let target = document.querySelector('.projectTitle');
 
+    let newTaskForm = document.querySelector('.newTaskForm');
+    let priority = newTaskForm[0].value;
+    let title = newTaskForm[1].value;
+    let dueDate = newTaskForm[2].value;
+    let details = newTaskForm[3].value;
+
     if (target != null) {
 
         let index = projects.findIndex(project => project.title == target.textContent);
-        projects[index].TODOlist.push(new singleTODO('High', true,'New task example', Date(),'Details details and details'));
+        projects[index].TODOlist.push(new singleTODO(priority, false, title, Date(), details));
         renderSingleTODO(projects[index].TODOlist.at(-1));
         
     } else {
 
-        mainTODOlist.push(new singleTODO('High', true,'New task example', Date(),'Details details and details'));
+        mainTODOlist.push(new singleTODO(priority, false, title, Date(), details));
         renderSingleTODO(mainTODOlist.at(-1));
 
     }
