@@ -1,4 +1,4 @@
-import {mainTODOlist, projects, Project} from './index.js';
+import {mainTODOlist, singleTODO, projects, Project} from './index.js';
 import {renderNewProjectItem} from './render';
 
 function submitNewProject() {
@@ -12,7 +12,21 @@ function submitNewProject() {
 }
 
 function makeNewTask() {
-    console.log('TODO');
+
+    let todos = document.querySelector('.todos');
+    let target = document.querySelector('.projectTitle');
+
+    if (target != null) {
+
+        let index = projects.findIndex(project => project.title == target.textContent);
+        projects[index].TODOlist.push(new singleTODO('High', true,'New task example', Date(),'Details details and details'));
+        
+    } else {
+
+        mainTODOlist.push(new singleTODO('High', true,'New task example', Date(),'Details details and details'));
+
+    }
+    
 }
 
 function deleteProject(e) {

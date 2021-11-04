@@ -42,11 +42,6 @@ const renderNewProjectItem = () => {
     projectTitle.textContent = projects[projects.length - 1].title;
     projectTitle.addEventListener('click', renderProject);
 
-    let newTaskButton = document.createElement('button');
-    newTaskButton.classList.add('newProjectTaskButton');
-    newTaskButton.textContent = '+';
-    newTaskButton.addEventListener('click', makeNewTask);
-
     let deleteProjectButton = document.createElement('button');
     deleteProjectButton.classList.add('deleteProjectButton');
     deleteProjectButton.textContent = 'del';
@@ -55,7 +50,6 @@ const renderNewProjectItem = () => {
 
     projectItem.appendChild(projectTitle);
     projectItem.appendChild(deleteProjectButton);
-    projectItem.appendChild(newTaskButton);
     
     projectItems.appendChild(projectItem);
 }
