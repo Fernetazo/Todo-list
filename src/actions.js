@@ -46,6 +46,19 @@ function deleteProject(e) {
 
 function deleteTask(e) {
     
+    let target = document.querySelector('.projectTitle');
+
+    if (target != null) {
+
+        let indexProject = projects.findIndex(project => project.title == target.textContent);
+        let indexTODO = projects[indexProject].TODOlist.findIndex(task => task == e);
+        projects[indexProject].TODOlist.splice(indexTODO, 1);
+
+    } else {
+
+        let index = mainTODOlist.findIndex(mainTODOlist => mainTODOlist.title == e);
+        mainTODOlist.splice(index, 1);
+    }
 }
 
 export  {submitNewProject, makeNewTask, deleteProject, deleteTask};

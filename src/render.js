@@ -280,8 +280,10 @@ const renderNewTaskButton = () => {
 
 const deleteTaskDOM = (e) => {
     
+    // This is ugly, but it works!
+    let target = e.target.parentNode.previousElementSibling.lastChild.textContent;
     e.target.parentNode.parentNode.parentNode.removeChild(e.target.parentNode.parentNode);
-    deleteTaskDOM();
+    deleteTask(target);
 
 }
 
