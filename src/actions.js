@@ -44,4 +44,8 @@ function deleteProject(e) {
     projects.splice([index], 1);
 }
 
-export  {submitNewProject, makeNewTask, deleteProject};
+function deleteTask(e) {
+    
+}
+
+export  {submitNewProject, makeNewTask, deleteProject, deleteTask};

@@ -1,5 +1,5 @@
 import {mainTODOlist, projects, Project} from './index.js';
-import {submitNewProject, makeNewTask, deleteProject} from './actions.js';
+import {submitNewProject, makeNewTask, deleteProject, deleteTask} from './actions.js';
 
 const firstRender = () => {
 
@@ -234,12 +234,15 @@ const renderTODOItem = (e) => {
 
     detailsButton.classList.add('detailsButton');
     detailsButton.textContent = 'Details';
+    detailsButton.addEventListener('click', showTaskDetails);
 
     editButton.classList.add('editButton');
     editButton.textContent = 'Edit';
+    editButton.addEventListener('click', editTaskDOM);
 
     deleteButton.classList.add('deleteButton');
     deleteButton.textContent = 'Delete';
+    deleteButton.addEventListener('click', deleteTaskDOM);
 
     leftSide.appendChild(priority);
     leftSide.appendChild(checkbox);
@@ -273,6 +276,21 @@ const renderNewTaskButton = () => {
 
     document.querySelector('.mainDisplay').appendChild(newTaskButtonContainer);
 
+}
+
+const deleteTaskDOM = (e) => {
+    
+    e.target.parentNode.parentNode.parentNode.removeChild(e.target.parentNode.parentNode);
+    deleteTaskDOM();
+
+}
+
+const editTaskDOM = () => {
+    // TODO
+}
+
+const showTaskDetails = () => {
+    // TODO
 }
 
 export {firstRender, renderNewProjectItem, renderSingleNewProjectItem, renderTODOList, renderSingleTODO};
