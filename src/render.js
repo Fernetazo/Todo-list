@@ -44,7 +44,7 @@ const renderNewProjectItem = (e) => {
 
 const deleteProjectDOM = (e) => {
     
-    e.target.parentNode.parentNode.removeChild(e.target.parentNode);
+    e.target.parentNode.remove();
 }
 
 const prepareListeners = () => {
@@ -228,6 +228,7 @@ const renderTODOItem = (e) => {
 
     label.for = 'todoExample';
     label.textContent = e.title;
+    label.classList.add('TODOTitle');
 
     dueDate.classList.add('dueDate');
     dueDate.textContent = e.dueDate;
@@ -280,15 +281,18 @@ const renderNewTaskButton = () => {
 
 const deleteTaskDOM = (e) => {
     
-    // This is ugly, but it works!
-    let target = e.target.parentNode.previousElementSibling.lastChild.textContent;
-    e.target.parentNode.parentNode.parentNode.removeChild(e.target.parentNode.parentNode);
+    let target = e.target.parentNode.parentNode;
+    target.remove();
+    target = target.querySelector('.TODOTitle').textContent;
     deleteTask(target);
-
+    
 }
 
-const editTaskDOM = () => {
-    // TODO
+const editTaskDOM = (e) => {
+    
+    let target = e.target.parentNode.parentNode;
+    console.log(target.childNodes);
+    target.removeChild(target.childNodes[0]);
 }
 
 const showTaskDetails = () => {
