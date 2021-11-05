@@ -285,14 +285,53 @@ const deleteTaskDOM = (e) => {
     target.remove();
     target = target.querySelector('.TODOTitle').textContent;
     deleteTask(target);
-    
+
 }
 
 const editTaskDOM = (e) => {
     
     let target = e.target.parentNode.parentNode;
-    console.log(target.childNodes);
-    target.removeChild(target.childNodes[0]);
+
+    let priority = target.querySelector('.priority');
+    let title = target.querySelector('.TODOTitle');
+    let dueDate = target.querySelector('.dueDate');
+    let detailsButton = target.querySelector('.detailsButton');
+    let editButton = target.querySelector('.editButton');
+    let deleteButton = target.querySelector('.deleteButton');
+
+    const priorityInput = document.createElement('select');
+    let optionLow = document.createElement('option');
+    let optionMedium = document.createElement('option');
+    let optionHigh = document.createElement('option');
+    optionLow.value = 'Low';
+    optionMedium.value = 'Medium';
+    optionHigh.value = 'High';
+    optionLow.textContent = 'Low';
+    optionMedium.textContent = 'Medium';
+    optionHigh.textContent = 'High';
+    priorityInput.append(optionHigh, optionMedium, optionLow);
+    priorityInput.value = priority.textContent;
+
+    let titleInput = document.createElement('input');
+    let dueDateInput = document.createElement('input');
+    let detailsInput = document.createElement('input');
+    let sendInput = document.createElement('button');
+    let cancelInput = document.createElement('button');
+
+    priority.replaceWith(priorityInput);
+    title.replaceWith(titleInput);
+    dueDate.replaceWith(dueDateInput);
+    detailsButton.replaceWith(detailsInput);
+    editButton.replaceWith(sendInput);
+    deleteButton.replaceWith(cancelInput);
+
+    titleInput.value = title.textContent;
+    dueDateInput.value = dueDate.textContent;
+    detailsInput.value = detailsButton.textContent; // Change for true details, not text from the button
+    //TODOING doesnt show?
+    editButton.textContent = "OK";
+    deleteButton.textContent = "Cancel";
+
 }
 
 const showTaskDetails = () => {
