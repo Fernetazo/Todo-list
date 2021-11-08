@@ -1,5 +1,5 @@
 import {mainTODOlist, projects, Project} from './index.js';
-import {submitNewProject, makeNewTask, deleteProject, deleteTask} from './actions.js';
+import {submitNewProject, makeNewTask, deleteProject, deleteTask, editTask} from './actions.js';
 
 const firstRender = () => {
 
@@ -358,6 +358,8 @@ const cancelEditDOM = (priority, title, dueDate, detailsButton, editButton, dele
 const sendEditDOM = (priority, title, dueDate, detailsButton, editButton, deleteButton, priorityInput, 
                     titleInput, dueDateInput, detailsInput, sendButton, cancelButton) => {
 
+    editTask(priorityInput.value, titleInput.value, dueDateInput.value, title.textContent)
+
     priorityInput.replaceWith(priority);
     titleInput.replaceWith(title);
     dueDateInput.replaceWith(dueDate);
@@ -368,7 +370,7 @@ const sendEditDOM = (priority, title, dueDate, detailsButton, editButton, delete
     priority.textContent = priorityInput.value;
     title.textContent = titleInput.value;
     dueDate.textContent = dueDateInput.value;
-    // Details? Send to logic. TODO
+    
 }
 
 const showTaskDetails = () => {
