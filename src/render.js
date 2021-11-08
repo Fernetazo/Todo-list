@@ -315,43 +315,60 @@ const editTaskDOM = (e) => {
     let titleInput = document.createElement('input');
     let dueDateInput = document.createElement('input');
     let detailsInput = document.createElement('input');
-    let sendInput = document.createElement('button');
-    let cancelInput = document.createElement('button');
+    let sendButton = document.createElement('button');
+    let cancelButton = document.createElement('button');
 
     priority.replaceWith(priorityInput);
     title.replaceWith(titleInput);
     dueDate.replaceWith(dueDateInput);
     detailsButton.replaceWith(detailsInput);
-    editButton.replaceWith(sendInput);
-    deleteButton.replaceWith(cancelInput);
+    editButton.replaceWith(sendButton);
+    deleteButton.replaceWith(cancelButton);
 
     titleInput.value = title.textContent;
     dueDateInput.value = dueDate.textContent;
-    detailsInput.value = detailsButton.textContent; // Change for true details, not text from the button
-    sendInput.textContent = "OK";
-    cancelInput.textContent = "Cancel";
+    detailsInput.value = detailsButton.textContent; // Change for true details, not text from the button textcontent
+    sendButton.textContent = "OK";
+    cancelButton.textContent = "Cancel";
 
-    cancelInput.addEventListener('click', () => {
-        cancelInputDOM(priority, title, dueDate, detailsButton, editButton, deleteButton, priorityInput, titleInput, dueDateInput, detailsInput, sendInput, cancelInput)
+    cancelButton.addEventListener('click', () => {
+        cancelEditDOM(priority, title, dueDate, detailsButton, editButton, deleteButton, priorityInput, 
+                     titleInput, dueDateInput, detailsInput, sendButton, cancelButton)
     });
 
-    sendInput.addEventListener('click', sendInputDOM);
+    sendButton.addEventListener('click', () => {
+        sendEditDOM(priority, title, dueDate, detailsButton, editButton, deleteButton, priorityInput, 
+                   titleInput, dueDateInput, detailsInput, sendButton, cancelButton)
+    });
 
 }
 
-const cancelInputDOM = (priority, title, dueDate, detailsButton, editButton, deleteButton, priorityInput, titleInput, dueDateInput, detailsInput, sendInput, cancelInput) => {
+const cancelEditDOM = (priority, title, dueDate, detailsButton, editButton, deleteButton, priorityInput, 
+                      titleInput, dueDateInput, detailsInput, sendButton, cancelButton) => {
     
     priorityInput.replaceWith(priority);
     titleInput.replaceWith(title);
     dueDateInput.replaceWith(dueDate);
     detailsInput.replaceWith(detailsButton);
-    sendInput.replaceWith(editButton);
-    cancelInput.replaceWith(deleteButton);
+    sendButton.replaceWith(editButton);
+    cancelButton.replaceWith(deleteButton);
 
 }
 
-const sendInputDOM = () => {
-    // TODO
+const sendEditDOM = (priority, title, dueDate, detailsButton, editButton, deleteButton, priorityInput, 
+                    titleInput, dueDateInput, detailsInput, sendButton, cancelButton) => {
+
+    priorityInput.replaceWith(priority);
+    titleInput.replaceWith(title);
+    dueDateInput.replaceWith(dueDate);
+    detailsInput.replaceWith(detailsButton);
+    sendButton.replaceWith(editButton);
+    cancelButton.replaceWith(deleteButton);
+
+    priority.textContent = priorityInput.value;
+    title.textContent = titleInput.value;
+    dueDate.textContent = dueDateInput.value;
+    // Details? Send to logic. TODO
 }
 
 const showTaskDetails = () => {
