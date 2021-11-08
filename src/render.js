@@ -299,7 +299,7 @@ const editTaskDOM = (e) => {
     let editButton = target.querySelector('.editButton');
     let deleteButton = target.querySelector('.deleteButton');
 
-    const priorityInput = document.createElement('select');
+    let priorityInput = document.createElement('select');
     let optionLow = document.createElement('option');
     let optionMedium = document.createElement('option');
     let optionHigh = document.createElement('option');
@@ -328,10 +328,20 @@ const editTaskDOM = (e) => {
     titleInput.value = title.textContent;
     dueDateInput.value = dueDate.textContent;
     detailsInput.value = detailsButton.textContent; // Change for true details, not text from the button
-    //TODOING doesnt show?
-    editButton.textContent = "OK";
-    deleteButton.textContent = "Cancel";
+    sendInput.textContent = "OK";
+    cancelInput.textContent = "Cancel";
 
+    cancelInput.addEventListener('click', cancelInputDOM);
+    sendInput.addEventListener('click', sendInputDOM);
+
+}
+
+const cancelInputDOM = () => {
+    // TODO
+}
+
+const sendInputDOM = () => {
+    // TODO
 }
 
 const showTaskDetails = () => {
