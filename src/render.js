@@ -331,13 +331,23 @@ const editTaskDOM = (e) => {
     sendInput.textContent = "OK";
     cancelInput.textContent = "Cancel";
 
-    cancelInput.addEventListener('click', cancelInputDOM);
+    cancelInput.addEventListener('click', () => {
+        cancelInputDOM(priority, title, dueDate, detailsButton, editButton, deleteButton, priorityInput, titleInput, dueDateInput, detailsInput, sendInput, cancelInput)
+    });
+
     sendInput.addEventListener('click', sendInputDOM);
 
 }
 
-const cancelInputDOM = () => {
-    // TODO
+const cancelInputDOM = (priority, title, dueDate, detailsButton, editButton, deleteButton, priorityInput, titleInput, dueDateInput, detailsInput, sendInput, cancelInput) => {
+    
+    priorityInput.replaceWith(priority);
+    titleInput.replaceWith(title);
+    dueDateInput.replaceWith(dueDate);
+    detailsInput.replaceWith(detailsButton);
+    sendInput.replaceWith(editButton);
+    cancelInput.replaceWith(deleteButton);
+
 }
 
 const sendInputDOM = () => {
