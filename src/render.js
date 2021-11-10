@@ -235,7 +235,8 @@ const renderTODOItem = (e) => {
 
     detailsButton.classList.add('detailsButton');
     detailsButton.textContent = 'Details';
-    detailsButton.addEventListener('click', showTaskDetails);
+    detailsButton.value = e.details;
+    detailsButton.addEventListener('click', showDetailsModal);
 
     editButton.classList.add('editButton');
     editButton.textContent = 'Edit';
@@ -373,8 +374,44 @@ const sendEditDOM = (priority, title, dueDate, detailsButton, editButton, delete
     
 }
 
-const showTaskDetails = () => {
-    // TODO
+const showDetailsModal = (e) => {
+
+    let detailsModal = document.createElement('div');
+    let detailsContainer = document.createElement('div');
+    let title = document.createElement('div');
+    let dueDate = document.createElement('div');
+    let priority = document.createElement('div');
+    let details = document.createElement('div');
+    details.value = 'asd';
+
+    detailsModal.classList.add('detailsModal');
+    detailsContainer.classList.add('detailsContainer');
+
+    let target = e.target.parentNode.parentNode;
+    title.textContent = target.querySelector('.TODOTitle').textContent;
+    dueDate.textContent = target.querySelector('.dueDate').textContent;
+    priority.textContent = target.querySelector('.priority').textContent;
+    //TO DO: Change details render to use logic instead (now uses value)
+    details.textContent = target.querySelector('.detailsButton').value;
+
+    detailsContainer.appendChild(title);
+    detailsContainer.appendChild(dueDate);
+    detailsContainer.appendChild(priority);
+    detailsContainer.appendChild(details);
+
+    detailsModal.appendChild(detailsContainer);
+    document.querySelector('body').appendChild(detailsModal);
+
+    window.onclick = function(event) {
+        if (event.target == detailsModal) {
+            detailsModal.style.opacity = "0";
+            detailsModal.style.visibility = "hidden";
+            
+            setTimeout(() => {
+                document.querySelector('body').removeChild(detailsModal);
+            }, 200);
+        }
+    }
 }
 
 export {firstRender, renderNewProjectItem, renderSingleNewProjectItem, renderTODOList, renderSingleTODO};

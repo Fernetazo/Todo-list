@@ -52,12 +52,12 @@ function deleteTask(e) {
         let indexProject = projects.findIndex(project => project.title == target.textContent);
         let indexTODO = projects[indexProject].TODOlist.findIndex(task => task == e);
         projects[indexProject].TODOlist.splice(indexTODO, 1);
-        // CHECKEAR QUE LO ESTE BORRANDO
     } else {
 
         let index = mainTODOlist.findIndex(mainTODOlist => mainTODOlist.title == e);
         mainTODOlist.splice(index, 1);
     }
+
 }
 
 function editTask(priority, title, dueDate, targetTitle) {
