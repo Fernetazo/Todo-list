@@ -1,5 +1,5 @@
-import {firstLoad} from './firstLoad';
-import {firstRender} from './render';
+import { firstLoad } from './firstLoad';
+import { firstRender } from './render';
 import './style.css';
 
 let mainTODOlist = [];

@@ -1,5 +1,5 @@
-import {mainTODOlist, projects} from './index.js';
-import {submitNewProject, makeNewTask, deleteProject, deleteTask, editTask, getDetails, changeDoneStatus} from './actions.js';
+import { mainTODOlist, projects } from './index.js';
+import { submitNewProject, makeNewTask, deleteProject, deleteTask, editTask, getDetails, changeDoneStatus } from './actions.js';
 
 const firstRender = () => {
 
@@ -303,6 +303,7 @@ const editTaskDOM = (e) => {
     let target = e.target.parentNode.parentNode;
 
     let priority = target.querySelector('.priority');
+    let checkbox = target.querySelector('.checkbox');
     let title = target.querySelector('.TODOTitle');
     let dueDate = target.querySelector('.dueDate');
     let detailsButton = target.querySelector('.detailsButton');
@@ -341,20 +342,22 @@ const editTaskDOM = (e) => {
     sendButton.textContent = "OK";
     cancelButton.textContent = "Cancel";
 
+    checkbox.style.visibility = 'hidden';
+
     cancelButton.addEventListener('click', () => {
         cancelEditDOM(priority, title, dueDate, detailsButton, editButton, deleteButton, priorityInput, 
-                     titleInput, dueDateInput, detailsInput, sendButton, cancelButton)
+                     titleInput, dueDateInput, detailsInput, sendButton, cancelButton, checkbox)
     });
 
     sendButton.addEventListener('click', () => {
         sendEditDOM(priority, title, dueDate, detailsButton, editButton, deleteButton, priorityInput, 
-                   titleInput, dueDateInput, detailsInput, sendButton, cancelButton)
+                   titleInput, dueDateInput, detailsInput, sendButton, cancelButton, checkbox)
     });
 
 }
 
 const cancelEditDOM = (priority, title, dueDate, detailsButton, editButton, deleteButton, priorityInput, 
-                      titleInput, dueDateInput, detailsInput, sendButton, cancelButton) => {
+                      titleInput, dueDateInput, detailsInput, sendButton, cancelButton, checkbox) => {
     
     priorityInput.replaceWith(priority);
     titleInput.replaceWith(title);
@@ -362,11 +365,12 @@ const cancelEditDOM = (priority, title, dueDate, detailsButton, editButton, dele
     detailsInput.replaceWith(detailsButton);
     sendButton.replaceWith(editButton);
     cancelButton.replaceWith(deleteButton);
+    checkbox.style.visibility = 'visible';
 
 }
 
 const sendEditDOM = (priority, title, dueDate, detailsButton, editButton, deleteButton, priorityInput, 
-                    titleInput, dueDateInput, detailsInput, sendButton, cancelButton) => {
+                    titleInput, dueDateInput, detailsInput, sendButton, cancelButton, checkbox) => {
 
     editTask(priorityInput.value, titleInput.value, dueDateInput.value, title.textContent, detailsInput.value)
 
@@ -381,6 +385,7 @@ const sendEditDOM = (priority, title, dueDate, detailsButton, editButton, delete
     title.textContent = titleInput.value;
     dueDate.textContent = dueDateInput.value;
     
+    checkbox.style.visibility = 'visible';
 }
 
 const showDetailsModal = (e) => {

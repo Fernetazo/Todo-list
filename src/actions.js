@@ -1,8 +1,8 @@
-import {mainTODOlist, singleTODO, projects, Project} from './index.js';
-import {renderNewProjectItem, renderSingleNewProjectItem, renderTODOList, renderSingleTODO} from './render';
-//import { formatDistance, subDays } from 'date-fns'
+import { mainTODOlist, singleTODO, projects, Project } from './index.js';
+import { renderNewProjectItem, renderSingleNewProjectItem, renderTODOList, renderSingleTODO } from './render';
+import { format, formatDistance, subDays } from 'date-fns'
 
-//console.log(formatDistance(subDays(new Date(), 3), new Date(), { addSuffix: true }));
+console.log(formatDistance(subDays(new Date(), 3), new Date(), { addSuffix: true }));
 
 
 function submitNewProject() {

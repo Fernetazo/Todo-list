@@ -1,4 +1,4 @@
-import {mainTODOlist, projects, Project, singleTODO} from './index.js';
+import { mainTODOlist, projects, Project, singleTODO } from './index.js';
 
 const firstLoad = () => {
     
