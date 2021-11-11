@@ -225,6 +225,7 @@ const renderTODOItem = (e) => {
     checkbox.type = 'checkbox';
     checkbox.classList.add('checkbox');
     checkbox.addEventListener('click', changeDoneStatusDOM);
+    
 
     label.for = 'todoExample';
     label.textContent = e.title;
@@ -245,6 +246,14 @@ const renderTODOItem = (e) => {
     deleteButton.classList.add('deleteButton');
     deleteButton.textContent = 'Delete';
     deleteButton.addEventListener('click', deleteTaskDOM);
+
+    if (e.checked) {
+        checkbox.checked = true;
+        label.style.color = 'gray';
+        dueDate.style.color = 'gray';
+        label.style.textDecoration = 'line-through';
+        dueDate.style.textDecoration = 'line-through';
+    }
 
     leftSide.appendChild(priority);
     leftSide.appendChild(checkbox);
