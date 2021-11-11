@@ -60,7 +60,7 @@ function deleteTask(e) {
 
 }
 
-function editTask(priority, title, dueDate, targetTitle) {
+function editTask(priority, title, dueDate, targetTitle, details) {
     
     let target = document.querySelector('.projectTitle');
 
@@ -72,6 +72,7 @@ function editTask(priority, title, dueDate, targetTitle) {
         projects[indexProject].TODOlist[indexTODO].priority = priority;
         projects[indexProject].TODOlist[indexTODO].title = title;
         projects[indexProject].TODOlist[indexTODO].dueDate = dueDate;
+        projects[indexProject].TODOlist[indexTODO].details = details;
         
     } else {
 
@@ -79,8 +80,29 @@ function editTask(priority, title, dueDate, targetTitle) {
         mainTODOlist[index].priority = priority;
         mainTODOlist[index].title = title;
         mainTODOlist[index].dueDate = dueDate;
+        mainTODOlist[index].details = details;
 
     }
 }
 
-export  {submitNewProject, makeNewTask, deleteProject, deleteTask, editTask};
+function getDetails(targetTitle) {
+    
+    let target = document.querySelector('.projectTitle');
+
+    if (target != null) {
+
+        let indexProject = projects.findIndex(project => project.title == target.textContent);
+        let indexTODO = projects[indexProject].TODOlist.findIndex(task => task.title == targetTitle);
+
+        return (projects[indexProject].TODOlist[indexTODO].details);
+        
+    } else {
+
+        let index = mainTODOlist.findIndex(mainTODOlist => mainTODOlist.title == targetTitle);
+        
+        return (mainTODOlist[index].details);
+
+    }
+}
+
+export  {submitNewProject, makeNewTask, deleteProject, deleteTask, editTask, getDetails};

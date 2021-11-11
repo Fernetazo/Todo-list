@@ -1,5 +1,5 @@
 import {mainTODOlist, projects, Project} from './index.js';
-import {submitNewProject, makeNewTask, deleteProject, deleteTask, editTask} from './actions.js';
+import {submitNewProject, makeNewTask, deleteProject, deleteTask, editTask, getDetails} from './actions.js';
 
 const firstRender = () => {
 
@@ -328,7 +328,7 @@ const editTaskDOM = (e) => {
 
     titleInput.value = title.textContent;
     dueDateInput.value = dueDate.textContent;
-    detailsInput.value = detailsButton.textContent; // Change for true details, not text from the button textcontent
+    detailsInput.value = getDetails(title.textContent);
     sendButton.textContent = "OK";
     cancelButton.textContent = "Cancel";
 
@@ -359,7 +359,7 @@ const cancelEditDOM = (priority, title, dueDate, detailsButton, editButton, dele
 const sendEditDOM = (priority, title, dueDate, detailsButton, editButton, deleteButton, priorityInput, 
                     titleInput, dueDateInput, detailsInput, sendButton, cancelButton) => {
 
-    editTask(priorityInput.value, titleInput.value, dueDateInput.value, title.textContent)
+    editTask(priorityInput.value, titleInput.value, dueDateInput.value, title.textContent, detailsInput.value)
 
     priorityInput.replaceWith(priority);
     titleInput.replaceWith(title);
@@ -382,7 +382,6 @@ const showDetailsModal = (e) => {
     let dueDate = document.createElement('div');
     let priority = document.createElement('div');
     let details = document.createElement('div');
-    details.value = 'asd';
 
     detailsModal.classList.add('detailsModal');
     detailsContainer.classList.add('detailsContainer');
@@ -391,8 +390,7 @@ const showDetailsModal = (e) => {
     title.textContent = target.querySelector('.TODOTitle').textContent;
     dueDate.textContent = target.querySelector('.dueDate').textContent;
     priority.textContent = target.querySelector('.priority').textContent;
-    //TO DO: Change details render to use logic instead (now uses value)
-    details.textContent = target.querySelector('.detailsButton').value;
+    details.textContent = getDetails(title.textContent);
 
     detailsContainer.appendChild(title);
     detailsContainer.appendChild(dueDate);
