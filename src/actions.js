@@ -1,5 +1,9 @@
 import {mainTODOlist, singleTODO, projects, Project} from './index.js';
 import {renderNewProjectItem, renderSingleNewProjectItem, renderTODOList, renderSingleTODO} from './render';
+//import { formatDistance, subDays } from 'date-fns'
+
+//console.log(formatDistance(subDays(new Date(), 3), new Date(), { addSuffix: true }));
+
 
 function submitNewProject() {
 
@@ -105,4 +109,24 @@ function getDetails(targetTitle) {
     }
 }
 
-export  {submitNewProject, makeNewTask, deleteProject, deleteTask, editTask, getDetails};
+function changeDoneStatus(status, targetTitle) {
+    
+    let target = document.querySelector('.projectTitle');
+
+    if (target != null) {
+
+        let indexProject = projects.findIndex(project => project.title == target.textContent);
+        let indexTODO = projects[indexProject].TODOlist.findIndex(task => task.title == targetTitle);
+
+        projects[indexProject].TODOlist[indexTODO].checked = status;
+        
+    } else {
+
+        let index = mainTODOlist.findIndex(mainTODOlist => mainTODOlist.title == targetTitle);
+        
+        mainTODOlist[index].checked = status;
+
+    }
+}
+
+export  {submitNewProject, makeNewTask, deleteProject, deleteTask, editTask, getDetails, changeDoneStatus};

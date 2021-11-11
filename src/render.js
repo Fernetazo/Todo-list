@@ -1,5 +1,5 @@
-import {mainTODOlist, projects, Project} from './index.js';
-import {submitNewProject, makeNewTask, deleteProject, deleteTask, editTask, getDetails} from './actions.js';
+import {mainTODOlist, projects} from './index.js';
+import {submitNewProject, makeNewTask, deleteProject, deleteTask, editTask, getDetails, changeDoneStatus} from './actions.js';
 
 const firstRender = () => {
 
@@ -224,7 +224,7 @@ const renderTODOItem = (e) => {
 
     checkbox.type = 'checkbox';
     checkbox.classList.add('checkbox');
-    checkbox.textContent = e.checkbox;
+    checkbox.addEventListener('click', changeDoneStatusDOM);
 
     label.for = 'todoExample';
     label.textContent = e.title;
@@ -410,6 +410,34 @@ const showDetailsModal = (e) => {
             }, 200);
         }
     }
+}
+
+const changeDoneStatusDOM = (e) => {
+    
+    let status = e.target.checked;
+
+    let target = e.target.parentNode.parentNode;
+
+    let title = target.querySelector('.TODOTitle');
+    let dueDate = target.querySelector('.dueDate');
+
+    if (status) {
+
+        title.style.color = 'gray';
+        dueDate.style.color = 'gray';
+        title.style.textDecoration = 'line-through';
+        dueDate.style.textDecoration = 'line-through';
+
+    } else {
+
+        title.style.color = 'black';
+        dueDate.style.color = 'black';
+        title.style.textDecoration = 'none';
+        dueDate.style.textDecoration = 'none';
+
+    }
+
+    changeDoneStatus(status, title.textContent);
 }
 
 export {firstRender, renderNewProjectItem, renderSingleNewProjectItem, renderTODOList, renderSingleTODO};
