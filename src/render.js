@@ -98,7 +98,7 @@ const showNewTaskModal = () => {
     
     const newTaskModal = document.createElement('div');
     const form = document.createElement('form');
-    const priority = document.createElement('input');
+    const priority = document.createElement('select');
     const title = document.createElement('input');
     const dueDate = document.createElement('input');
     const details = document.createElement('input');
@@ -107,12 +107,39 @@ const showNewTaskModal = () => {
     newTaskModal.classList.add('newTaskModal');
     form.classList.add('newTaskForm');
     form.onsubmit = () => {return false};
-    priority.placeholder = 'Priority';
     title.placeholder = 'Title';
-    dueDate.placeholder = 'Date';
+    title.setAttribute('required', '');
+    dueDate.type = 'date';
+    dueDate.setAttribute('required', '');
     details.placeholder = 'Details';
     submitButton.textContent = 'Submit new task';
-    submitButton.addEventListener('click', makeNewTask);
+    submitButton.addEventListener('click', () => {
+        if (!priority.value || !title.value || !dueDate.value) {
+            alert ('Something is missing');
+        } else {
+            makeNewTask();
+        }
+    });
+
+    let optionDefault = document.createElement('option');
+    let optionLow = document.createElement('option');
+    let optionMedium = document.createElement('option');
+    let optionHigh = document.createElement('option');
+    optionDefault.setAttribute('selected', '');
+    optionDefault.setAttribute('disabled', '');
+    optionDefault.setAttribute('hidden', '');
+    optionDefault.value = '';
+    optionDefault.textContent = '-- Select Priority --';  
+    optionLow.value = 'Low';
+    optionLow.textContent = 'Low';
+    optionMedium.value = 'Medium';
+    optionMedium.textContent = 'Medium';
+    optionHigh.value = 'High';
+    optionHigh.textContent = 'High';
+    
+    priority.append(optionDefault, optionHigh, optionMedium, optionLow);
+    priority.placeholder = 'Priority';
+    priority.setAttribute('required', '');
 
     form.appendChild(priority);
     form.appendChild(title);
@@ -325,6 +352,7 @@ const editTaskDOM = (e) => {
 
     let titleInput = document.createElement('input');
     let dueDateInput = document.createElement('input');
+    dueDateInput.type = 'date';
     let detailsInput = document.createElement('input');
     let sendButton = document.createElement('button');
     let cancelButton = document.createElement('button');

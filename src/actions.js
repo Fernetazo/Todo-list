@@ -1,9 +1,5 @@
 import { mainTODOlist, singleTODO, projects, Project } from './index.js';
 import { renderNewProjectItem, renderSingleNewProjectItem, renderTODOList, renderSingleTODO } from './render';
-import { format, formatDistance, subDays } from 'date-fns'
-
-console.log(formatDistance(subDays(new Date(), 3), new Date(), { addSuffix: true }));
-
 
 function submitNewProject() {
 
@@ -22,20 +18,19 @@ function makeNewTask() {
     let newTaskForm = document.querySelector('.newTaskForm');
     let priority = newTaskForm[0].value;
     let title = newTaskForm[1].value;
-    let dueDate = newTaskForm[2].value; // TODO use input date
+    let dueDate = newTaskForm[2].value;
     let details = newTaskForm[3].value;
 
     if (target != null) {
 
         let index = projects.findIndex(project => project.title == target.textContent);
-        projects[index].TODOlist.push(new singleTODO(priority, false, title, Date(), details));
+        projects[index].TODOlist.push(new singleTODO(priority, false, title, dueDate, details));
         renderSingleTODO(projects[index].TODOlist.at(-1));
         
     } else {
 
-        mainTODOlist.push(new singleTODO(priority, false, title, Date(), details));
+        mainTODOlist.push(new singleTODO(priority, false, title, dueDate, details));
         renderSingleTODO(mainTODOlist.at(-1));
-
     }
 }
 
