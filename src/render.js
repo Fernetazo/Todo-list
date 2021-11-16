@@ -1,6 +1,6 @@
 import { mainTODOlist, projects } from './index.js';
 import { submitNewProject, makeNewTask, deleteProject, deleteTask, editTask, getDetails, changeDoneStatus } from './actions.js';
-import { format, formatDistance, subDays } from 'date-fns';
+import { format, isThisWeek, parseISO, formatDistance, subDays } from 'date-fns';
 
 const firstRender = () => {
 
@@ -11,7 +11,7 @@ const firstRender = () => {
     });
     
     prepareListeners();
-    renderNonProjectTitle('HOME');
+    renderNonProjectTitle('H O M E');
 
     renderTODOList(mainTODOlist);
 
@@ -190,7 +190,7 @@ const clearMainDisplay = () => {
 const renderHome = () => {
 
     clearMainDisplay();
-    renderNonProjectTitle('HOME');
+    renderNonProjectTitle('H O M E');
     renderTODOList(mainTODOlist);
 
 }
@@ -198,12 +198,12 @@ const renderHome = () => {
 const renderToday = () => {
 
     clearMainDisplay();
-    renderNonProjectTitle('TODAY');
+    renderNonProjectTitle('T O D A Y');
 
-    const todayArray = mainTODOlist.filter((e) => {
+    const array = mainTODOlist.filter((e) => {
         return e.dueDate == format(new Date(), 'yyyy-MM-dd');
     })
-    renderTODOList(todayArray);
+    renderTODOList(array);
     document.querySelector('.newTaskButtonContainer').style.visibility = 'hidden';
 
 }
@@ -211,7 +211,14 @@ const renderToday = () => {
 const renderWeek = () => {
 
     clearMainDisplay();
-    // TO DO
+    renderNonProjectTitle('W E E K');
+
+    const array = mainTODOlist.filter((e) => {
+            return isThisWeek(parseISO(e.dueDate), 0);
+    })
+    renderTODOList(array);
+    document.querySelector('.newTaskButtonContainer').style.visibility = 'hidden';
+
 }
 
 const renderNonProjectTitle = (title) => {
