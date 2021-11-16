@@ -1,5 +1,5 @@
 import { mainTODOlist, projects } from './index.js';
-import { submitNewProject, makeNewTask, deleteProject, deleteTask, editTask, getDetails, changeDoneStatus } from './actions.js';
+import { submitNewProject, makeNewTask, editProjectTitle, deleteProject, deleteTask, editTask, getDetails, changeDoneStatus } from './actions.js';
 import { format, isThisWeek, parseISO, formatDistance, subDays } from 'date-fns';
 
 const firstRender = () => {
@@ -35,7 +35,6 @@ const renderNewProjectItem = (e) => {
     let deleteProjectButton = document.createElement('button');
     deleteProjectButton.classList.add('deleteProjectButton');
     deleteProjectButton.textContent = 'del';
-    deleteProjectButton.addEventListener('click', deleteProject);
     deleteProjectButton.addEventListener('click', deleteProjectDOM);
 
     projectItem.appendChild(projectTitle);
@@ -45,9 +44,40 @@ const renderNewProjectItem = (e) => {
 
 }
 
+const editProjectDOM = (e) => {
+    
+    let title = document.querySelector('.projectTitle');
+    let editButton = document.querySelector('.editProjectTitleButton');
+
+    let titleInput = document.createElement('input');
+    let sendButton = document.createElement('button');
+
+    title.replaceWith(titleInput);
+    editButton.replaceWith(sendButton);
+    
+    titleInput.value = title.textContent;
+    sendButton.textContent = "OK";
+
+    sendButton.addEventListener('click', () => {
+        
+        editProjectTitle(titleInput.value, title.textContent)
+
+        titleInput.replaceWith(title);
+        sendButton.replaceWith(editButton);
+
+        title.textContent = titleInput.value;
+    });
+}
+
+const editProjectDetailsDOM = (e) => {
+    
+    // TO DO
+}
+
 const deleteProjectDOM = (e) => {
     
     e.target.parentNode.remove();
+    deleteProject;
 }
 
 const prepareListeners = () => {
@@ -241,18 +271,28 @@ const renderProject = (e) => {
     let projectItem = document.createElement('div');
     let projectHeader = document.createElement('div');
     let projectTitle = document.createElement('div');
+    let editProjectButton = document.createElement('button');
     let projectDescription = document.createElement('div');
+    let editProjectDetailsButton = document.createElement('button');
 
     projectItem.classList.add('projectItem');
     projectHeader.classList.add('projectHeader');
     projectTitle.classList.add('projectTitle');
+    editProjectButton.classList.add('editProjectTitleButton');
     projectDescription.classList.add('projectDescription');
+    editProjectDetailsButton.classList.add('editProjectDetailsButton');
 
     projectTitle.textContent = targetProject.title;
     projectDescription.textContent = targetProject.description;
+    editProjectButton.textContent = 'edit';
+    editProjectButton.addEventListener('click', editProjectDOM);
+    editProjectDetailsButton.textContent = 'edit';
+    editProjectDetailsButton.addEventListener('click', editProjectDetailsDOM);
 
     projectHeader.appendChild(projectTitle);
+    projectHeader.appendChild(editProjectButton);  
     projectHeader.appendChild(projectDescription);
+    projectHeader.appendChild(editProjectDetailsButton);  
     projectItem.appendChild(projectHeader);
 
     mainDisplay.appendChild(projectItem);

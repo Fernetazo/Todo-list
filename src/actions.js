@@ -34,6 +34,11 @@ function makeNewTask() {
     }
 }
 
+function editProjectTitle(e) {
+
+    // TO DO
+}
+
 function deleteProject(e) {
 
     let targetProject = projects.find( (project) => project.title == e.target.previousElementSibling.textContent );
@@ -124,4 +129,4 @@ function changeDoneStatus(status, targetTitle) {
     }
 }
 
-export  {submitNewProject, makeNewTask, deleteProject, deleteTask, editTask, getDetails, changeDoneStatus};
+export  {submitNewProject, makeNewTask, editProjectTitle, deleteProject, deleteTask, editTask, getDetails, changeDoneStatus};

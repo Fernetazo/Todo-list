@@ -2,7 +2,7 @@ import { mainTODOlist, projects, Project, singleTODO } from './index.js';
 import { format, formatDistance, subDays } from 'date-fns'
 
 // TO DO: 
-// Dont show done task when click on today or wekk
+// When deleting a project item, reset the main Display
 // Add date-fns to webpack config (its working, maybe?)
 // Add new button to projects: edit (name and description)
 // Add restrictions between user's action (dont let user add new task when editing)
