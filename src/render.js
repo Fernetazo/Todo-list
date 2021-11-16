@@ -1,5 +1,6 @@
 import { mainTODOlist, projects } from './index.js';
 import { submitNewProject, makeNewTask, deleteProject, deleteTask, editTask, getDetails, changeDoneStatus } from './actions.js';
+import { format, formatDistance, subDays } from 'date-fns';
 
 const firstRender = () => {
 
@@ -10,6 +11,8 @@ const firstRender = () => {
     });
     
     prepareListeners();
+    renderNonProjectTitle('HOME');
+
     renderTODOList(mainTODOlist);
 
 }
@@ -52,6 +55,12 @@ const prepareListeners = () => {
     const home = document.querySelector('.home');
     home.addEventListener('click', renderHome);
 
+    const today = document.querySelector('.today');
+    today.addEventListener('click', renderToday);
+    
+    const week = document.querySelector('.week');
+    week.addEventListener('click', renderWeek);
+
     const newProjectButton = document.querySelector('.newProjectButton');
     newProjectButton.addEventListener('click', showNewProjectModal);
 }
@@ -72,7 +81,14 @@ const showNewProjectModal = () => {
     titleLabel.textContent = 'Title:';
     descriptionLabel.textContent = 'Description:';
     submitButton.textContent = 'Submit new project';
-    submitButton.addEventListener('click', submitNewProject);
+
+    submitButton.addEventListener('click', () => {
+        if (!titleInput.value) {
+            alert ('Something is missing');
+        } else {
+            submitNewProject();
+        }
+    });
 
     form.appendChild(titleLabel);
     form.appendChild(titleInput);
@@ -174,7 +190,38 @@ const clearMainDisplay = () => {
 const renderHome = () => {
 
     clearMainDisplay();
+    renderNonProjectTitle('HOME');
     renderTODOList(mainTODOlist);
+
+}
+
+const renderToday = () => {
+
+    clearMainDisplay();
+    renderNonProjectTitle('TODAY');
+
+    const todayArray = mainTODOlist.filter((e) => {
+        return e.dueDate == format(new Date(), 'yyyy-MM-dd');
+    })
+    renderTODOList(todayArray);
+    document.querySelector('.newTaskButtonContainer').style.visibility = 'hidden';
+
+}
+
+const renderWeek = () => {
+
+    clearMainDisplay();
+    // TO DO
+}
+
+const renderNonProjectTitle = (title) => {
+
+    let mainDisplay = document.querySelector('.mainDisplay');
+    let projectHeader = document.createElement('div');
+    projectHeader.classList.add('projectHeader');
+    projectHeader.textContent = title;
+    mainDisplay.appendChild(projectHeader);
+
 }
 
 const renderProject = (e) => {
@@ -252,7 +299,6 @@ const renderTODOItem = (e) => {
     checkbox.type = 'checkbox';
     checkbox.classList.add('checkbox');
     checkbox.addEventListener('click', changeDoneStatusDOM);
-    
 
     label.for = 'todoExample';
     label.textContent = e.title;

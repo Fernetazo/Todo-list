@@ -9,6 +9,7 @@ import { format, formatDistance, subDays } from 'date-fns'
 // Check for already input task and project
 // Add support local saving
 // Placeholder in grey when editing or adding new task
+// Find visual bug when adding new projects, the divs goes up each time
 // UI
 
 const firstLoad = () => {
