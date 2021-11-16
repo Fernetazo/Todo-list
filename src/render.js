@@ -32,28 +32,36 @@ const renderNewProjectItem = (e) => {
     projectTitle.textContent = e.title;
     projectTitle.addEventListener('click', renderProject);
 
+    let editProjectButton = document.createElement('button');
+    editProjectButton.classList.add('editProjectTitleButton');
+    editProjectButton.textContent = 'edit';
+    editProjectButton.addEventListener('click', editProjectTitleDOM);
+
     let deleteProjectButton = document.createElement('button');
     deleteProjectButton.classList.add('deleteProjectButton');
     deleteProjectButton.textContent = 'del';
     deleteProjectButton.addEventListener('click', deleteProjectDOM);
 
     projectItem.appendChild(projectTitle);
+    projectItem.appendChild(editProjectButton);
     projectItem.appendChild(deleteProjectButton);
     
     return projectItem;
 
 }
 
-const editProjectDOM = (e) => {
+const editProjectTitleDOM = (e) => {
     
-    let title = document.querySelector('.projectTitle');
-    let editButton = document.querySelector('.editProjectTitleButton');
-
+    let target = e.target.parentNode;
+    let title = e.target.previousSibling; 
+    let editButton = target.querySelector('.editProjectTitleButton');
+    let delButton = target.querySelector('.deleteProjectButton');
     let titleInput = document.createElement('input');
     let sendButton = document.createElement('button');
 
     title.replaceWith(titleInput);
     editButton.replaceWith(sendButton);
+    delButton.style.visibility = 'hidden';
     
     titleInput.value = title.textContent;
     sendButton.textContent = "OK";
@@ -66,6 +74,7 @@ const editProjectDOM = (e) => {
         sendButton.replaceWith(editButton);
 
         title.textContent = titleInput.value;
+        delButton.style.visibility = 'visible';
     });
 }
 
@@ -271,34 +280,29 @@ const renderProject = (e) => {
     let projectItem = document.createElement('div');
     let projectHeader = document.createElement('div');
     let projectTitle = document.createElement('div');
-    let editProjectButton = document.createElement('button');
     let projectDescription = document.createElement('div');
     let editProjectDetailsButton = document.createElement('button');
 
     projectItem.classList.add('projectItem');
     projectHeader.classList.add('projectHeader');
     projectTitle.classList.add('projectTitle');
-    editProjectButton.classList.add('editProjectTitleButton');
     projectDescription.classList.add('projectDescription');
     editProjectDetailsButton.classList.add('editProjectDetailsButton');
 
     projectTitle.textContent = targetProject.title;
     projectDescription.textContent = targetProject.description;
-    editProjectButton.textContent = 'edit';
-    editProjectButton.addEventListener('click', editProjectDOM);
+    
     editProjectDetailsButton.textContent = 'edit';
     editProjectDetailsButton.addEventListener('click', editProjectDetailsDOM);
 
     projectHeader.appendChild(projectTitle);
-    projectHeader.appendChild(editProjectButton);  
     projectHeader.appendChild(projectDescription);
     projectHeader.appendChild(editProjectDetailsButton);  
     projectItem.appendChild(projectHeader);
 
     mainDisplay.appendChild(projectItem);
 
-    renderTODOList(targetProject.TODOlist);
-        
+    renderTODOList(targetProject.TODOlist);        
 };
 
 const renderTODOList = (target) => {

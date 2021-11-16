@@ -2,6 +2,7 @@ import { mainTODOlist, projects, Project, singleTODO } from './index.js';
 import { format, formatDistance, subDays } from 'date-fns'
 
 // TO DO: 
+// Add classlist name to each project title from the sidebar
 // When deleting a project item, reset the main Display
 // Add date-fns to webpack config (its working, maybe?)
 // Add new button to projects: edit (name and description)

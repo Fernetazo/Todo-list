@@ -11,6 +11,22 @@ function submitNewProject() {
     
 }
 
+function editProjectTitle(title, targetTitle) {
+
+    let indexProject = projects.findIndex(project => project.title == targetTitle);
+
+    projects[indexProject].title = title;
+    console.log(projects);
+}
+
+function deleteProject(e) {
+
+    let targetProject = projects.find( (project) => project.title == e.target.previousElementSibling.textContent );
+    let index = projects.findIndex(project => project.title == targetProject.title);
+    
+    projects.splice([index], 1);
+}
+
 function makeNewTask() {
 
     let target = document.querySelector('.projectTitle');
@@ -32,19 +48,6 @@ function makeNewTask() {
         mainTODOlist.push(new singleTODO(priority, false, title, dueDate, details));
         renderSingleTODO(mainTODOlist.at(-1));
     }
-}
-
-function editProjectTitle(e) {
-
-    // TO DO
-}
-
-function deleteProject(e) {
-
-    let targetProject = projects.find( (project) => project.title == e.target.previousElementSibling.textContent );
-    let index = projects.findIndex(project => project.title == targetProject.title);
-    
-    projects.splice([index], 1);
 }
 
 function deleteTask(e) {
