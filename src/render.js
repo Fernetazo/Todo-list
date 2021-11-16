@@ -201,7 +201,7 @@ const renderToday = () => {
     renderNonProjectTitle('T O D A Y');
 
     const array = mainTODOlist.filter((e) => {
-        return e.dueDate == format(new Date(), 'yyyy-MM-dd');
+        return e.dueDate == format(new Date(), 'yyyy-MM-dd') && e.checked == false;
     })
     renderTODOList(array);
     document.querySelector('.newTaskButtonContainer').style.visibility = 'hidden';
@@ -214,7 +214,7 @@ const renderWeek = () => {
     renderNonProjectTitle('W E E K');
 
     const array = mainTODOlist.filter((e) => {
-            return isThisWeek(parseISO(e.dueDate), 0);
+            return isThisWeek(parseISO(e.dueDate), 0) && e.checked == false;
     })
     renderTODOList(array);
     document.querySelector('.newTaskButtonContainer').style.visibility = 'hidden';
