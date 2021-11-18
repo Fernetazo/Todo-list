@@ -18,6 +18,13 @@ function editProjectTitle(title, targetTitle) {
     projects[indexProject].title = title;
 }
 
+function editProjectDescription(description, targetDescription) {
+
+    let indexProject = projects.findIndex(project => project.description == targetDescription);
+
+    projects[indexProject].description = description;
+}
+
 function deleteProject(e) {
 
     let targetProject = projects.find( (project) => project.title == e.target.previousElementSibling.textContent );
@@ -131,4 +138,4 @@ function changeDoneStatus(status, targetTitle) {
     }
 }
 
-export  {submitNewProject, makeNewTask, editProjectTitle, deleteProject, deleteTask, editTask, getDetails, changeDoneStatus};
+export  {submitNewProject, makeNewTask, editProjectTitle, editProjectDescription, deleteProject, deleteTask, editTask, getDetails, changeDoneStatus};

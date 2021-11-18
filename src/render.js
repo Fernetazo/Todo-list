@@ -1,5 +1,5 @@
 import { mainTODOlist, projects } from './index.js';
-import { submitNewProject, makeNewTask, editProjectTitle, deleteProject, deleteTask, editTask, getDetails, changeDoneStatus } from './actions.js';
+import { submitNewProject, makeNewTask, editProjectTitle, editProjectDescription, deleteProject, deleteTask, editTask, getDetails, changeDoneStatus } from './actions.js';
 import { format, isThisWeek, parseISO, formatDistance, subDays } from 'date-fns';
 
 const firstRender = () => {
@@ -54,7 +54,7 @@ const renderNewProjectItem = (e) => {
 const editProjectTitleDOM = (e) => {
     
     let target = e.target.parentNode;
-    let title = target.querySelector('.projectTitleSidebar');; 
+    let title = target.querySelector('.projectTitleSidebar');
     let editButton = target.querySelector('.editProjectTitleButton');
     let delButton = target.querySelector('.deleteProjectButton');
     let titleInput = document.createElement('input');
@@ -82,9 +82,29 @@ const editProjectTitleDOM = (e) => {
     });
 }
 
-const editProjectDetailsDOM = (e) => {
+const editProjectDescriptionDOM = (e) => {
     
-    // TO DO
+    let target = e.target.parentNode;
+    let description = target.querySelector('.projectDescription');
+    let editButton = target.querySelector('.editProjectDetailsButton');
+    let descriptionInput = document.createElement('input');
+    let sendButton = document.createElement('button');
+
+    description.replaceWith(descriptionInput);
+    editButton.replaceWith(sendButton);
+    
+    descriptionInput.value = description.textContent;
+    sendButton.textContent = "OK";
+
+    sendButton.addEventListener('click', () => {
+        
+        editProjectDescription(descriptionInput.value, description.textContent)
+        
+        descriptionInput.replaceWith(description);
+        sendButton.replaceWith(editButton);
+
+        description.textContent = descriptionInput.value;
+    });
 }
 
 const deleteProjectDOM = (e) => {
@@ -307,7 +327,7 @@ const renderProject = (e) => {
     projectDescription.textContent = targetProject.description;
     
     editProjectDetailsButton.textContent = 'edit';
-    editProjectDetailsButton.addEventListener('click', editProjectDetailsDOM);
+    editProjectDetailsButton.addEventListener('click', editProjectDescriptionDOM);
 
     projectHeader.appendChild(projectTitle);
     projectHeader.appendChild(projectDescription);
