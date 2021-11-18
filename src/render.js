@@ -146,7 +146,7 @@ const deleteProjectDOM = (e) => {
     }
 
     parent.remove();
-    deleteProject;
+    deleteProject(sidebarTitle);
 }
 
 const prepareListeners = () => {

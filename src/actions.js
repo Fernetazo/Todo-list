@@ -26,12 +26,14 @@ function editProjectDescription(description, targetDescription) {
     projects[indexProject].description = description;
 }
 
-function deleteProject(e) {
+function deleteProject(sidebarTitle) {
 
-    let targetProject = projects.find( (project) => project.title == e.target.previousElementSibling.textContent );
+    let targetProject = projects.find( (project) => project.title == sidebarTitle.textContent );
     let index = projects.findIndex(project => project.title == targetProject.title);
     
     projects.splice([index], 1);
+
+    console.log(projects);
 }
 
 function makeNewTask() {
