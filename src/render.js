@@ -29,6 +29,7 @@ const renderNewProjectItem = (e) => {
     projectItem.classList.add('projectItem');
 
     let projectTitle = document.createElement('div');
+    projectTitle.classList.add('projectTitleSidebar');
     projectTitle.textContent = e.title;
     projectTitle.addEventListener('click', renderProject);
 
