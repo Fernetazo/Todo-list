@@ -52,20 +52,31 @@ const renderNewProjectItem = (e) => {
 }
 
 const editProjectTitleDOM = (e) => {
-    
+
     let target = e.target.parentNode;
     let title = target.querySelector('.projectTitleSidebar');
     let editButton = target.querySelector('.editProjectTitleButton');
-    let delButton = target.querySelector('.deleteProjectButton');
+    let deleteButton = target.querySelector('.deleteProjectButton');
     let titleInput = document.createElement('input');
     let sendButton = document.createElement('button');
+    let cancelButton = document.createElement('button');
 
     title.replaceWith(titleInput);
     editButton.replaceWith(sendButton);
-    delButton.style.visibility = 'hidden';
+    deleteButton.replaceWith(cancelButton);
+
+    cancelButton.textContent = "Cancel";
     
     titleInput.value = title.textContent;
     sendButton.textContent = "OK";
+
+    cancelButton.addEventListener('click', () => {
+
+        titleInput.replaceWith(title);
+        sendButton.replaceWith(editButton);
+        cancelButton.replaceWith(deleteButton);
+
+    });
 
     sendButton.addEventListener('click', () => {
         
@@ -80,7 +91,7 @@ const editProjectTitleDOM = (e) => {
                 alert('That title already exists!');
 
             } else {
-                
+
                 editProjectTitle(titleInput.value, title.textContent);
 
                 const mainTitle = document.querySelector('.projectTitle');
@@ -88,9 +99,10 @@ const editProjectTitleDOM = (e) => {
 
                 titleInput.replaceWith(title);
                 sendButton.replaceWith(editButton);
+                cancelButton.replaceWith(deleteButton);
 
                 title.textContent = titleInput.value;
-                delButton.style.visibility = 'visible';
+                deleteButton.style.visibility = 'visible';
             }
         }
     });
@@ -504,7 +516,7 @@ const editTaskDOM = (e) => {
     let detailsInput = document.createElement('input');
     let sendButton = document.createElement('button');
     let cancelButton = document.createElement('button');
-
+//copiando
     priority.replaceWith(priorityInput);
     title.replaceWith(titleInput);
     dueDate.replaceWith(dueDateInput);
@@ -517,7 +529,6 @@ const editTaskDOM = (e) => {
     detailsInput.value = getDetails(title.textContent);
     sendButton.textContent = "OK";
     cancelButton.textContent = "Cancel";
-
     checkbox.style.visibility = 'hidden';
 
     cancelButton.addEventListener('click', () => {

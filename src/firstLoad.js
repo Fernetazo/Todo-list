@@ -1,15 +1,14 @@
 import { mainTODOlist, projects, Project, singleTODO } from './index.js';
 import { format, formatDistance, subDays } from 'date-fns'
 
-// TO DO: 
-// Add a cancel button when editing project title sidebar
-// Add restrictions between user's action (dont let user add new task when editing)
-// Check for already input task and project
-// Add support local saving
-// Placeholder in grey when editing or adding new task
-// Find visual bug when adding new projects, the divs goes up each time
-// UI
-// Add date-fns to webpack config (its working, maybe? check after final push in github live preview)
+/* TO DO:
+    Add restrictions between user's action (dont let user add new task when editing)
+    Add support local saving
+    Placeholder in grey when editing or adding new task
+    Find visual bug when adding new projects, the divs goes up each time
+    UI
+    Add date-fns to webpack config (its working, maybe? check after final push in github live preview)
+*/
 
 const firstLoad = () => {
     
