@@ -2,8 +2,6 @@ import { mainTODOlist, projects, Project, singleTODO } from './index.js';
 import { format, formatDistance, subDays } from 'date-fns'
 
 // TO DO: 
-// When deleting a project item, reset the main Display
-// Add date-fns to webpack config (its working, maybe?)
 // Add new button to projects: edit description
 // Add restrictions between user's action (dont let user add new task when editing)
 // Check for already input task and project
@@ -11,6 +9,7 @@ import { format, formatDistance, subDays } from 'date-fns'
 // Placeholder in grey when editing or adding new task
 // Find visual bug when adding new projects, the divs goes up each time
 // UI
+// Add date-fns to webpack config (its working, maybe?)
 
 const firstLoad = () => {
     

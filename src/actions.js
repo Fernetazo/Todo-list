@@ -16,7 +16,6 @@ function editProjectTitle(title, targetTitle) {
     let indexProject = projects.findIndex(project => project.title == targetTitle);
 
     projects[indexProject].title = title;
-    console.log(projects);
 }
 
 function deleteProject(e) {

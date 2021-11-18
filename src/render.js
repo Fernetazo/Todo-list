@@ -54,7 +54,7 @@ const renderNewProjectItem = (e) => {
 const editProjectTitleDOM = (e) => {
     
     let target = e.target.parentNode;
-    let title = e.target.previousSibling; 
+    let title = target.querySelector('.projectTitleSidebar');; 
     let editButton = target.querySelector('.editProjectTitleButton');
     let delButton = target.querySelector('.deleteProjectButton');
     let titleInput = document.createElement('input');
@@ -70,6 +70,9 @@ const editProjectTitleDOM = (e) => {
     sendButton.addEventListener('click', () => {
         
         editProjectTitle(titleInput.value, title.textContent)
+        
+        const mainTitle = document.querySelector('.projectTitle');
+        if (mainTitle && (mainTitle.textContent == title.textContent)) mainTitle.textContent = titleInput.value;
 
         titleInput.replaceWith(title);
         sendButton.replaceWith(editButton);
@@ -86,7 +89,17 @@ const editProjectDetailsDOM = (e) => {
 
 const deleteProjectDOM = (e) => {
     
-    e.target.parentNode.remove();
+    const parent = e.target.parentNode;
+    const sidebarTitle = parent.querySelector('.projectTitleSidebar');
+    const mainTitle = document.querySelector('.projectTitle');
+
+    if ((sidebarTitle && mainTitle) && (sidebarTitle.textContent == mainTitle.textContent)) {
+        
+        clearMainDisplay();
+
+    }
+
+    parent.remove();
     deleteProject;
 }
 
