@@ -1,5 +1,5 @@
 import { mainTODOlist, projects } from './index.js';
-import { submitNewProject, makeNewTask, editProjectTitle, editProjectDescription, deleteProject, deleteTask, editTask, getDetails, changeDoneStatus } from './actions.js';
+import { submitNewProject, makeNewTask, editProjectTitle, editProjectDescription, deleteProject, deleteTask, editTask, getDetails, changeDoneStatus, checkDuplication } from './actions.js';
 import { format, isThisWeek, parseISO, formatDistance, subDays } from 'date-fns';
 
 const firstRender = () => {
@@ -156,11 +156,9 @@ const showNewProjectModal = () => {
     submitButton.textContent = 'Submit new project';
 
     submitButton.addEventListener('click', () => {
-        if (!titleInput.value) {
-            alert ('Something is missing');
-        } else {
-            submitNewProject();
-        }
+
+        (!titleInput.value) ? alert ('Something is missing') : submitNewProject();
+        
     });
 
     form.appendChild(titleLabel);
@@ -202,12 +200,13 @@ const showNewTaskModal = () => {
     dueDate.setAttribute('required', '');
     details.placeholder = 'Details';
     submitButton.textContent = 'Submit new task';
+    
     submitButton.addEventListener('click', () => {
-        if (!priority.value || !title.value || !dueDate.value) {
-            alert ('Something is missing');
-        } else {
-            makeNewTask();
-        }
+
+        (!priority.value || !title.value || !dueDate.value) ? 
+            alert ('Something is missing') 
+            : checkDuplication('TODOtitle', title.value) ?  alert('That title already exists!') : makeNewTask();
+    
     });
 
     let optionDefault = document.createElement('option');
@@ -509,10 +508,20 @@ const editTaskDOM = (e) => {
     });
 
     sendButton.addEventListener('click', () => {
-        sendEditDOM(priority, title, dueDate, detailsButton, editButton, deleteButton, priorityInput, 
-                   titleInput, dueDateInput, detailsInput, sendButton, cancelButton, checkbox)
-    });
+        
+        if (!priorityInput.value || !titleInput.value || !dueDateInput.value) {
 
+            alert ('Something is missing');
+
+        } else {
+
+            checkDuplication('TODOtitle', titleInput.value) ?
+                alert('That title already exists!') 
+                : sendEditDOM(priority, title, dueDate, detailsButton, editButton, deleteButton, priorityInput, 
+                          titleInput, dueDateInput, detailsInput, sendButton, cancelButton, checkbox);
+
+        }
+    });
 }
 
 const cancelEditDOM = (priority, title, dueDate, detailsButton, editButton, deleteButton, priorityInput, 

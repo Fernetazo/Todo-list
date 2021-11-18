@@ -1,3 +1,4 @@
+import { clamp } from 'date-fns';
 import { mainTODOlist, singleTODO, projects, Project } from './index.js';
 import { renderNewProjectItem, renderSingleNewProjectItem, renderTODOList, renderSingleTODO } from './render';
 
@@ -138,4 +139,28 @@ function changeDoneStatus(status, targetTitle) {
     }
 }
 
-export  {submitNewProject, makeNewTask, editProjectTitle, editProjectDescription, deleteProject, deleteTask, editTask, getDetails, changeDoneStatus};
+function checkDuplication(type, input) {
+    
+    if (type == 'TODOtitle') {
+
+        let projectTitle = document.querySelector('.projectTitle');
+
+        if (projectTitle) {
+
+            let indexProject = projects.findIndex(project => project.title == projectTitle.textContent);
+            return projects[indexProject].TODOlist.some(task => task.title == input);
+
+        } else {
+
+            return mainTODOlist.some(task => task.title == input);
+
+        }
+
+    } else {
+
+
+        
+    }
+}
+
+export  {submitNewProject, makeNewTask, editProjectTitle, editProjectDescription, deleteProject, deleteTask, editTask, getDetails, changeDoneStatus, checkDuplication};
