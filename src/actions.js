@@ -158,7 +158,7 @@ function checkDuplication(type, input) {
 
     } else {
 
-
+        return projects.some(project => project.title == input);
         
     }
 }

@@ -69,16 +69,30 @@ const editProjectTitleDOM = (e) => {
 
     sendButton.addEventListener('click', () => {
         
-        editProjectTitle(titleInput.value, title.textContent)
-        
-        const mainTitle = document.querySelector('.projectTitle');
-        if (mainTitle && (mainTitle.textContent == title.textContent)) mainTitle.textContent = titleInput.value;
+        if (!titleInput.value) {
 
-        titleInput.replaceWith(title);
-        sendButton.replaceWith(editButton);
+            alert ('Something is missing');
 
-        title.textContent = titleInput.value;
-        delButton.style.visibility = 'visible';
+        } else {
+
+            if (checkDuplication('projectTitle', titleInput.value)) {
+
+                alert('That title already exists!');
+
+            } else {
+                
+                editProjectTitle(titleInput.value, title.textContent);
+
+                const mainTitle = document.querySelector('.projectTitle');
+                if (mainTitle && (mainTitle.textContent == title.textContent)) mainTitle.textContent = titleInput.value;
+
+                titleInput.replaceWith(title);
+                sendButton.replaceWith(editButton);
+
+                title.textContent = titleInput.value;
+                delButton.style.visibility = 'visible';
+            }
+        }
     });
 }
 
@@ -157,7 +171,11 @@ const showNewProjectModal = () => {
 
     submitButton.addEventListener('click', () => {
 
-        (!titleInput.value) ? alert ('Something is missing') : submitNewProject();
+        (!titleInput.value) ? 
+            alert ('Something is missing') 
+            : checkDuplication('projectTitle', titleInput.value) ?  
+                alert('That title already exists!') 
+                : submitNewProject();
         
     });
 

@@ -2,6 +2,7 @@ import { mainTODOlist, projects, Project, singleTODO } from './index.js';
 import { format, formatDistance, subDays } from 'date-fns'
 
 // TO DO: 
+// Add a cancel button when editing project title sidebar
 // Add restrictions between user's action (dont let user add new task when editing)
 // Check for already input task and project
 // Add support local saving
