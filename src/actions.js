@@ -1,6 +1,5 @@
-import { clamp } from 'date-fns';
 import { mainTODOlist, singleTODO, projects, Project } from './index.js';
-import { renderNewProjectItem, renderSingleNewProjectItem, renderTODOList, renderSingleTODO } from './render';
+import { renderSingleNewProjectItem, renderSingleTODO } from './render';
 
 function submitNewProject() {
 
@@ -10,6 +9,7 @@ function submitNewProject() {
     projects.push(new Project(title, description));
     renderSingleNewProjectItem(projects.at(-1));
     
+    save('projects');
 }
 
 function editProjectTitle(title, targetTitle) {
@@ -17,6 +17,9 @@ function editProjectTitle(title, targetTitle) {
     let indexProject = projects.findIndex(project => project.title == targetTitle);
 
     projects[indexProject].title = title;
+
+    save('projects');
+
 }
 
 function editProjectDescription(description, targetDescription) {
@@ -24,6 +27,9 @@ function editProjectDescription(description, targetDescription) {
     let indexProject = projects.findIndex(project => project.description == targetDescription);
 
     projects[indexProject].description = description;
+
+    save('projects');
+
 }
 
 function deleteProject(sidebarTitle) {
@@ -33,7 +39,8 @@ function deleteProject(sidebarTitle) {
     
     projects.splice([index], 1);
 
-    console.log(projects);
+    save('projects');
+
 }
 
 function makeNewTask() {
@@ -46,7 +53,7 @@ function makeNewTask() {
     let dueDate = newTaskForm[2].value;
     let details = newTaskForm[3].value;
 
-    if (target != null) {
+    if (target) {
 
         let index = projects.findIndex(project => project.title == target.textContent);
         projects[index].TODOlist.push(new singleTODO(priority, false, title, dueDate, details));
@@ -56,23 +63,31 @@ function makeNewTask() {
 
         mainTODOlist.push(new singleTODO(priority, false, title, dueDate, details));
         renderSingleTODO(mainTODOlist.at(-1));
+
     }
+    
+    save(target);
+
 }
 
 function deleteTask(e) {
     
     let target = document.querySelector('.projectTitle');
 
-    if (target != null) {
+    if (target) {
 
         let indexProject = projects.findIndex(project => project.title == target.textContent);
         let indexTODO = projects[indexProject].TODOlist.findIndex(task => task == e);
         projects[indexProject].TODOlist.splice(indexTODO, 1);
+
     } else {
 
         let index = mainTODOlist.findIndex(mainTODOlist => mainTODOlist.title == e);
         mainTODOlist.splice(index, 1);
+        
     }
+
+    save(target);
 
 }
 
@@ -80,7 +95,7 @@ function editTask(priority, title, dueDate, targetTitle, details) {
     
     let target = document.querySelector('.projectTitle');
 
-    if (target != null) {
+    if (target) {
 
         let indexProject = projects.findIndex(project => project.title == target.textContent);
         let indexTODO = projects[indexProject].TODOlist.findIndex(task => task.title == targetTitle);
@@ -99,13 +114,16 @@ function editTask(priority, title, dueDate, targetTitle, details) {
         mainTODOlist[index].details = details;
 
     }
+
+    save(target);
+
 }
 
 function getDetails(targetTitle) {
     
     let target = document.querySelector('.projectTitle');
 
-    if (target != null) {
+    if (target) {
 
         let indexProject = projects.findIndex(project => project.title == target.textContent);
         let indexTODO = projects[indexProject].TODOlist.findIndex(task => task.title == targetTitle);
@@ -119,13 +137,14 @@ function getDetails(targetTitle) {
         return (mainTODOlist[index].details);
 
     }
+
 }
 
 function changeDoneStatus(status, targetTitle) {
     
     let target = document.querySelector('.projectTitle');
 
-    if (target != null) {
+    if (target) {
 
         let indexProject = projects.findIndex(project => project.title == target.textContent);
         let indexTODO = projects[indexProject].TODOlist.findIndex(task => task.title == targetTitle);
@@ -139,6 +158,9 @@ function changeDoneStatus(status, targetTitle) {
         mainTODOlist[index].checked = status;
 
     }
+
+    save(target);
+
 }
 
 function checkDuplication(type, input) {
@@ -162,6 +184,19 @@ function checkDuplication(type, input) {
 
         return projects.some(project => project.title == input);
         
+    }
+}
+
+function save(type) {
+    
+    if (type == null) {
+    
+        window.localStorage.setItem('mainTODOlist', JSON.stringify(mainTODOlist));
+
+    } else {
+
+        window.localStorage.setItem('projects', JSON.stringify(projects));
+
     }
 }
 
