@@ -1,6 +1,15 @@
 import { mainTODOlist, projects } from './index.js';
-import { submitNewProject, makeNewTask, editProjectTitle, editProjectDescription, deleteProject, deleteTask, editTask, getDetails, changeDoneStatus, checkDuplication } from './actions.js';
 import { format, isThisWeek, parseISO, formatDistance, subDays } from 'date-fns';
+import { submitNewProject, 
+         makeNewTask, 
+         editProjectTitle, 
+         editProjectDescription, 
+         deleteProject, 
+         deleteTask, 
+         editTask, 
+         getDetails, 
+         changeDoneStatus, 
+         checkDuplication } from './actions.js';
 
 const firstRender = () => {
 
@@ -651,4 +660,8 @@ const changeDoneStatusDOM = (e) => {
     changeDoneStatus(status, title.textContent);
 }
 
-export {firstRender, renderNewProjectItem, renderSingleNewProjectItem, renderTODOList, renderSingleTODO};
+export { firstRender, 
+         renderNewProjectItem, 
+         renderSingleNewProjectItem, 
+         renderTODOList, 
+         renderSingleTODO };

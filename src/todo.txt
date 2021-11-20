@@ -1,5 +1,5 @@
 TO DO:
-    Add support local saving
+    Place done task at bottom
     UI
     Placeholder in grey when editing or adding new task
     Find visual bug when adding new projects, the divs goes up each time

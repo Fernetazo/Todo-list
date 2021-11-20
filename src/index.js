@@ -28,12 +28,8 @@ projects = JSON.parse(window.localStorage.getItem('projects'));
 
 let date = format(new Date(), 'yyyy-MM-dd');
 
-if (mainTODOlist) {
+if (!mainTODOlist) {
 
-    console.log('hay mainTODOlist en localStorage');
-
-} else {
-    
     mainTODOlist = [];
 
     mainTODOlist.push(new singleTODO('High', true,'Do the dishes', date,'Remember to use the sponge!'));
@@ -42,12 +38,8 @@ if (mainTODOlist) {
 
 }
 
-if (projects) {
+if (!projects) {
 
-    console.log('hay projects en localStorage');
-
-} else {
-    
     projects = [];
 
     projects.push(new Project('Vacation', 'Going to Rome!'));
