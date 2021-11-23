@@ -380,14 +380,21 @@ const renderProject = (e) => {
 const renderTODOList = (target) => {
 
     let todos = document.createElement('div');
+    let todosDone = document.createElement('div');
     todos.classList.add('todos');
+    todosDone.classList.add('todosDone');
     
     target.forEach(e => {
-        todos.appendChild(renderTODOItem(e));
+        if (e.checked == false) {
+            todos.appendChild(renderTODOItem(e));
+        } else {
+            todosDone.appendChild(renderTODOItem(e));
+        }
     });
 
     document.querySelector('.mainDisplay').appendChild(todos);
     renderNewTaskButton();
+    document.querySelector('.mainDisplay').appendChild(todosDone);
     
 }
 
@@ -635,11 +642,14 @@ const showDetailsModal = (e) => {
 const changeDoneStatusDOM = (e) => {
     
     let status = e.target.checked;
-
     let target = e.target.parentNode.parentNode;
 
     let title = target.querySelector('.TODOTitle');
     let dueDate = target.querySelector('.dueDate');
+
+    let todos = document.querySelector('.todos');
+    let todosDone = document.querySelector('.todosDone');
+    let newTaskButtonContainer = document.querySelector('.newTaskButtonContainer');
 
     if (status) {
 
@@ -647,6 +657,7 @@ const changeDoneStatusDOM = (e) => {
         dueDate.style.color = 'gray';
         title.style.textDecoration = 'line-through';
         dueDate.style.textDecoration = 'line-through';
+        newTaskButtonContainer.after(target);
 
     } else {
 
@@ -654,10 +665,12 @@ const changeDoneStatusDOM = (e) => {
         dueDate.style.color = 'black';
         title.style.textDecoration = 'none';
         dueDate.style.textDecoration = 'none';
+        newTaskButtonContainer.before(target);
 
     }
 
     changeDoneStatus(status, title.textContent);
+
 }
 
 export { firstRender, 

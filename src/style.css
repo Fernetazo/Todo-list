@@ -43,6 +43,11 @@ main {
     border: 1px solid black;
 }
 
+.todos {
+    display: flex;
+    flex-direction: column;
+}
+
 .todoItem, .todoLeftSide, .todoRightSide {
     display: flex;
     flex-direction: row;
