@@ -163,6 +163,27 @@ function changeDoneStatus(status, targetTitle) {
 
 }
 
+function getIndex(targetTitle) {
+    
+    let target = document.querySelector('.projectTitle');
+
+    if (target) {
+
+        let indexProject = projects.findIndex(project => project.title == target.textContent);
+        let indexTODO = projects[indexProject].TODOlist.findIndex(task => task.title == targetTitle);
+
+        return indexTODO;
+        
+    } else {
+
+        let index = mainTODOlist.findIndex(mainTODOlist => mainTODOlist.title == targetTitle);
+        
+        return index;
+
+    }
+
+}
+
 function checkDuplication(type, input) {
     
     if (type == 'TODOtitle') {
@@ -200,4 +221,4 @@ function save(type) {
     }
 }
 
-export  {submitNewProject, makeNewTask, editProjectTitle, editProjectDescription, deleteProject, deleteTask, editTask, getDetails, changeDoneStatus, checkDuplication};
+export  {submitNewProject, makeNewTask, editProjectTitle, editProjectDescription, deleteProject, deleteTask, editTask, getDetails, changeDoneStatus, getIndex, checkDuplication};

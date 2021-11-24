@@ -48,6 +48,11 @@ main {
     flex-direction: column;
 }
 
+.todosDone {
+    display: flex;
+    flex-direction: column;
+}
+
 .todoItem, .todoLeftSide, .todoRightSide {
     display: flex;
     flex-direction: row;

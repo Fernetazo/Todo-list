@@ -9,6 +9,7 @@ import { submitNewProject,
          editTask, 
          getDetails, 
          changeDoneStatus, 
+         getIndex,
          checkDuplication } from './actions.js';
 
 const firstRender = () => {
@@ -649,15 +650,25 @@ const changeDoneStatusDOM = (e) => {
 
     let todos = document.querySelector('.todos');
     let todosDone = document.querySelector('.todosDone');
-    let newTaskButtonContainer = document.querySelector('.newTaskButtonContainer');
 
+    let index = getIndex(title.textContent);
+    
     if (status) {
 
         title.style.color = 'gray';
         dueDate.style.color = 'gray';
         title.style.textDecoration = 'line-through';
         dueDate.style.textDecoration = 'line-through';
-        newTaskButtonContainer.after(target);
+        todosDone.append(target);
+
+        // Get (logically) the array index where the task will be put
+        let finder = Array.from(todosDone.children).find(child => {
+
+            return getIndex(child.querySelector('.TODOTitle').textContent) > index;
+
+        });
+        // Put task before found index or last one
+        (finder) ? finder.before(target) : todosDone.appendChild(target);
 
     } else {
 
@@ -665,7 +676,15 @@ const changeDoneStatusDOM = (e) => {
         dueDate.style.color = 'black';
         title.style.textDecoration = 'none';
         dueDate.style.textDecoration = 'none';
-        newTaskButtonContainer.before(target);
+
+        // Get (logically) the array index where the task will be put
+        let finder = Array.from(todos.children).find(child => {
+
+            return getIndex(child.querySelector('.TODOTitle').textContent) > index;
+
+        });
+        // Put task before found index or last one
+        (finder) ? finder.before(target) : todos.appendChild(target);
 
     }
 
