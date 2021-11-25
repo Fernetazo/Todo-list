@@ -456,6 +456,7 @@ const renderTODOItem = (e) => {
         dueDate.style.color = 'gray';
         label.style.textDecoration = 'line-through';
         dueDate.style.textDecoration = 'line-through';
+        priority.classList.add('done');
     }
 
     leftSide.appendChild(priority);
@@ -532,7 +533,7 @@ const editTaskDOM = (e) => {
     let detailsInput = document.createElement('input');
     let sendButton = document.createElement('button');
     let cancelButton = document.createElement('button');
-//copiando
+
     priority.replaceWith(priorityInput);
     title.replaceWith(titleInput);
     dueDate.replaceWith(dueDateInput);
@@ -646,6 +647,7 @@ const changeDoneStatusDOM = (e) => {
 
     let title = target.querySelector('.TODOTitle');
     let dueDate = target.querySelector('.dueDate');
+    let priority = target.querySelector('.priority');
 
     let todos = document.querySelector('.todos');
     let todosDone = document.querySelector('.todosDone');
@@ -658,7 +660,7 @@ const changeDoneStatusDOM = (e) => {
         dueDate.style.color = 'gray';
         title.style.textDecoration = 'line-through';
         dueDate.style.textDecoration = 'line-through';
-        todosDone.append(target);
+        priority.classList.add('done');
 
         // Get (logically) the array index where the task will be put
         let finder = Array.from(todosDone.children).find(child => {
@@ -675,6 +677,7 @@ const changeDoneStatusDOM = (e) => {
         dueDate.style.color = 'black';
         title.style.textDecoration = 'none';
         dueDate.style.textDecoration = 'none';
+        priority.classList.remove('done');
 
         // Get (logically) the array index where the task will be put
         let finder = Array.from(todos.children).find(child => {

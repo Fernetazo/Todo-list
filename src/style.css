@@ -102,6 +102,10 @@ main {
     background-color: blue;
 }
 
+.done {
+    background-color: gray;
+}
+
 
 .newProjectModal, .newTaskModal, .detailsModal {
     position: fixed;
