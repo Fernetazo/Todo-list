@@ -58,11 +58,15 @@ main {
 .todos {
     display: flex;
     flex-direction: column;
+    height: 600px;
+    overflow: auto;
 }
 
 .todosDone {
     display: flex;
     flex-direction: column;
+    height: 300px;
+    overflow: auto;
 }
 
 .todoItem, .todoLeftSide, .todoRightSide {
@@ -97,6 +101,7 @@ main {
 .Low {
     background-color: blue;
 }
+
 
 .newProjectModal, .newTaskModal, .detailsModal {
     position: fixed;
