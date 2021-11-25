@@ -43,14 +43,16 @@ const renderNewProjectItem = (e) => {
     projectTitle.textContent = e.title;
     projectTitle.addEventListener('click', renderProject);
 
-    let editProjectButton = document.createElement('button');
+    let editProjectButton = document.createElement('span');
     editProjectButton.classList.add('editProjectTitleButton');
+    editProjectButton.classList.add('material-icons');
     editProjectButton.textContent = 'edit';
     editProjectButton.addEventListener('click', editProjectTitleDOM);
 
-    let deleteProjectButton = document.createElement('button');
+    let deleteProjectButton = document.createElement('span');
+    deleteProjectButton.classList.add('material-icons');
     deleteProjectButton.classList.add('deleteProjectButton');
-    deleteProjectButton.textContent = 'del';
+    deleteProjectButton.textContent = 'delete';
     deleteProjectButton.addEventListener('click', deleteProjectDOM);
 
     projectItem.appendChild(projectTitle);
@@ -415,9 +417,9 @@ const renderTODOItem = (e) => {
     let checkbox = document.createElement('input');
     let label = document.createElement('label');
     let dueDate = document.createElement('div');
-    let detailsButton = document.createElement('button');
-    let editButton = document.createElement('button');
-    let deleteButton = document.createElement('button');
+    let detailsButton = document.createElement('span');
+    let editButton = document.createElement('span');
+    let deleteButton = document.createElement('span');
 
     todoItem.classList.add('todoItem');
     leftSide.classList.add('todoLeftSide');
@@ -438,16 +440,18 @@ const renderTODOItem = (e) => {
     dueDate.textContent = e.dueDate;
 
     detailsButton.classList.add('detailsButton');
-    detailsButton.textContent = 'Details';
-    detailsButton.value = e.details;
+    detailsButton.classList.add('material-icons');
+    detailsButton.textContent = 'description';
     detailsButton.addEventListener('click', showDetailsModal);
 
     editButton.classList.add('editButton');
-    editButton.textContent = 'Edit';
+    editButton.classList.add('material-icons');
+    editButton.textContent = 'edit';
     editButton.addEventListener('click', editTaskDOM);
 
     deleteButton.classList.add('deleteButton');
-    deleteButton.textContent = 'Delete';
+    deleteButton.classList.add('material-icons');
+    deleteButton.textContent = 'delete';
     deleteButton.addEventListener('click', deleteTaskDOM);
 
     if (e.checked) {
@@ -475,14 +479,15 @@ const renderTODOItem = (e) => {
 const renderNewTaskButton = () => {
 
     let newTaskButtonContainer = document.createElement('div');
-    let newTaskButton = document.createElement('button') ;
+    let newTaskButton = document.createElement('span') ;
     let newTaskText = document.createElement('div');
 
     newTaskButtonContainer.classList.add('newTaskButtonContainer');
     newTaskButton.classList.add('newTaskButton');
+    newTaskButton.classList.add('material-icons');
     newTaskText.classList.add('newTaskText');
 
-    newTaskButton.textContent = '+';
+    newTaskButton.textContent = 'add';
     newTaskText.textContent = 'Add new task';
     newTaskButtonContainer.addEventListener('click', showNewTaskModal);
 

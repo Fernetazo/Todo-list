@@ -1,3 +1,21 @@
+.material-icons {
+    font-family: 'Material Icons', serif;
+    color: black;
+}
+
+span {
+    transition: all 0.3s;
+}
+
+span:hover {
+    color: orange;
+    cursor:pointer;
+}
+
+span:active {
+    color: red;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -105,7 +123,6 @@ main {
 .done {
     background-color: gray;
 }
-
 
 .newProjectModal, .newTaskModal, .detailsModal {
     position: fixed;
