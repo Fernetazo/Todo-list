@@ -4,6 +4,7 @@ body {
     margin: 0;
     width: 1200px;
     height: 600px;
+    font-family: Graphik Web,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
 
 .topBar {
@@ -22,18 +23,29 @@ main {
 }
 
 .navBar {
-    display:flex;
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 200px;
     border: 1px solid yellow;
+
 }
 
 .navBarOptions {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
     height: 200px;
+
+}
+
+.project, .projectItems {
+    display: flex;
+    flex-direction: column;
+}
+
+.projectItems {
+    height: 380px;
+    overflow: auto;
 }
 
 .mainDisplay {
@@ -68,6 +80,22 @@ main {
 
 .todoRightSide {
     justify-content: flex-end;
+}
+
+.priority {
+    width: 5px;
+}
+
+.High {
+    background-color: red;
+}
+
+.Medium {
+    background-color: yellow;
+}
+
+.Low {
+    background-color: blue;
 }
 
 .newProjectModal, .newTaskModal, .detailsModal {

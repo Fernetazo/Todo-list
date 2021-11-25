@@ -1,5 +1,4 @@
 TO DO:
-    Place done task at bottom -> when unticking, the task must be in the previous position
     UI
     Placeholder in grey when editing or adding new task
     Find visual bug when adding new projects, the divs goes up each time

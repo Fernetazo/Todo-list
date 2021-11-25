@@ -425,7 +425,6 @@ const renderTODOItem = (e) => {
     
     priority.classList.add('priority');
     priority.classList.add(e.priority);
-    priority.textContent = e.priority; //Delete this when style is added
 
     checkbox.type = 'checkbox';
     checkbox.classList.add('checkbox');
