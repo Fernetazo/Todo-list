@@ -525,7 +525,7 @@ const editTaskDOM = (e) => {
     optionMedium.textContent = 'Medium';
     optionHigh.textContent = 'High';
     priorityInput.append(optionHigh, optionMedium, optionLow);
-    priorityInput.value = priority.textContent;
+    priorityInput.value = priority.classList[1];
 
     let titleInput = document.createElement('input');
     let dueDateInput = document.createElement('input');
@@ -561,11 +561,18 @@ const editTaskDOM = (e) => {
 
         } else {
 
-            checkDuplication('TODOtitle', titleInput.value) ?
+            if (title.textContent == titleInput.value) {
+                
+                sendEditDOM(priority, title, dueDate, detailsButton, editButton, deleteButton, priorityInput, 
+                            titleInput, dueDateInput, detailsInput, sendButton, cancelButton, checkbox);
+            } else {
+
+                checkDuplication('TODOtitle', titleInput.value) ?
                 alert('That title already exists!') 
                 : sendEditDOM(priority, title, dueDate, detailsButton, editButton, deleteButton, priorityInput, 
-                          titleInput, dueDateInput, detailsInput, sendButton, cancelButton, checkbox);
+                             titleInput, dueDateInput, detailsInput, sendButton, cancelButton, checkbox);
 
+            }
         }
     });
 }
@@ -595,7 +602,8 @@ const sendEditDOM = (priority, title, dueDate, detailsButton, editButton, delete
     sendButton.replaceWith(editButton);
     cancelButton.replaceWith(deleteButton);
 
-    priority.textContent = priorityInput.value;
+    priority.classList.remove(priority.classList[1]);
+    priority.classList.add(priorityInput.value);
     title.textContent = titleInput.value;
     dueDate.textContent = dueDateInput.value;
     
