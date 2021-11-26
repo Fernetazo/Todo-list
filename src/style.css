@@ -17,7 +17,8 @@ body {
     flex-direction: row;
     align-items: center;
     height: 80px;
-    border: 1px solid red;
+    border: 1px solid black;
+    background-color: #dc4c3f;
 }
 
 main {
@@ -33,7 +34,7 @@ main {
     justify-content: space-between;
     width: 200px;
     border: 1px solid yellow;
-
+    background-color: #f5f6f7;
 }
 
 .navBarOptions {
@@ -92,7 +93,7 @@ main {
 }
 
 .todoItem:hover, .projectItem:hover {
-    background-color:whitesmoke;
+    background-color: #e0e2e5;
 }
 
 .projectItem:hover .projectItemRightSide > span {

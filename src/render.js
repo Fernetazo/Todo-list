@@ -167,18 +167,21 @@ const editProjectDescriptionDOM = (e) => {
 
 const deleteProjectDOM = (e) => {
     
-    const parent = e.target.parentNode.parentNode;
-    const sidebarTitle = parent.querySelector('.projectTitleSidebar');
-    const mainTitle = document.querySelector('.projectTitle');
-
-    if ((sidebarTitle && mainTitle) && (sidebarTitle.textContent == mainTitle.textContent)) {
+    if (confirm('Are you sure do you want to delete this project?')) {
         
-        clearMainDisplay();
-
+        const parent = e.target.parentNode.parentNode;
+        const sidebarTitle = parent.querySelector('.projectTitleSidebar');
+        const mainTitle = document.querySelector('.projectTitle');
+    
+        if ((sidebarTitle && mainTitle) && (sidebarTitle.textContent == mainTitle.textContent)) {
+            
+            clearMainDisplay();
+    
+        }
+    
+        parent.remove();
+        deleteProject(sidebarTitle);
     }
-
-    parent.remove();
-    deleteProject(sidebarTitle);
 }
 
 const prepareListeners = () => {
@@ -499,7 +502,7 @@ const renderTODOItem = (e) => {
 const renderNewTaskButton = () => {
 
     let newTaskButtonContainer = document.createElement('div');
-    let newTaskButton = document.createElement('span') ;
+    let newTaskButton = document.createElement('icon') ;
     let newTaskText = document.createElement('div');
 
     newTaskButtonContainer.classList.add('newTaskButtonContainer');
@@ -520,11 +523,14 @@ const renderNewTaskButton = () => {
 
 const deleteTaskDOM = (e) => {
     
-    let target = e.target.parentNode.parentNode;
-    target.remove();
-    target = target.querySelector('.TODOTitle').textContent;
-    deleteTask(target);
+    if (confirm('Are you sure do you want delete this task?')) {
 
+        let target = e.target.parentNode.parentNode;
+        target.remove();
+        target = target.querySelector('.TODOTitle').textContent;
+        deleteTask(target);
+
+    };
 }
 
 const editTaskDOM = (e) => {
