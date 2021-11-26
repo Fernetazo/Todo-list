@@ -3,19 +3,6 @@
     color: black;
 }
 
-span {
-    transition: all 0.3s;
-}
-
-span:hover {
-    color: orange;
-    cursor:pointer;
-}
-
-span:active {
-    color: red;
-}
-
 body {
     display: flex;
     flex-direction: column;
@@ -102,6 +89,33 @@ main {
 
 .todoRightSide {
     justify-content: flex-end;
+}
+
+.todoItem:hover, .projectItem:hover {
+    background-color:whitesmoke;
+}
+
+.projectItem:hover > span {
+    transition: all 0.3s;
+    visibility: visible;
+}
+
+.todoItem:hover .todoRightSide > span {
+    transition: all 0.3s;
+    visibility: visible;
+}
+
+span {
+    visibility: hidden;
+}
+
+span:hover {
+    color: orange;
+    cursor:pointer;
+}
+
+span:active {
+    color: red;
 }
 
 .priority {
