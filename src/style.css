@@ -44,6 +44,36 @@ main {
 
 }
 
+.home > icon {
+    color: green;
+}
+
+.today > icon {
+    color: blue;
+}
+
+.week > icon {
+    color: red;
+}
+
+.project > icon {
+    color:purple;
+}
+
+.newProjectButton {
+    transition: all 0.3s;
+    visibility: visible;
+}
+
+.newProjectButton:before {
+    content: 'add';
+    color: green;
+}
+
+.newProjectButton:hover:before {
+    content: 'add_circle';
+}
+
 .project, .projectItems {
     display: flex;
     flex-direction: column;
@@ -92,6 +122,10 @@ main {
     justify-content: flex-end;
 }
 
+.todoItem, .projectItem {
+    transition: all 0.3s;
+}
+
 .todoItem:hover, .projectItem:hover {
     background-color: #e0e2e5;
 }
@@ -99,20 +133,27 @@ main {
 .projectItem:hover .projectItemRightSide > span {
     transition: all 0.3s;
     visibility: visible;
+    opacity: 1;
+}
+
+.todoItem .todoRightSide > span {
+    transition: all 0.3s;
 }
 
 .todoItem:hover .todoRightSide > span {
-    transition: all 0.3s;
     visibility: visible;
+    opacity: 1;
 }
 
 span {
     visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.3s linear,opacity 0.3s linear;
 }
 
 span:hover {
     color: orange;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 span:active {
