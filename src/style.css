@@ -95,7 +95,7 @@ main {
     background-color:whitesmoke;
 }
 
-.projectItem:hover > span {
+.projectItem:hover .projectItemRightSide > span {
     transition: all 0.3s;
     visibility: visible;
 }

@@ -43,6 +43,9 @@ const renderNewProjectItem = (e) => {
     projectTitle.textContent = e.title;
     projectTitle.addEventListener('click', renderProject);
 
+    let projectItemRightSide = document.createElement('div');
+    projectItemRightSide.classList.add('projectItemRightSide');
+
     let editProjectButton = document.createElement('span');
     editProjectButton.classList.add('editProjectTitleButton');
     editProjectButton.classList.add('material-icons');
@@ -56,8 +59,9 @@ const renderNewProjectItem = (e) => {
     deleteProjectButton.addEventListener('click', deleteProjectDOM);
 
     projectItem.appendChild(projectTitle);
-    projectItem.appendChild(editProjectButton);
-    projectItem.appendChild(deleteProjectButton);
+    projectItemRightSide.appendChild(editProjectButton);
+    projectItemRightSide.appendChild(deleteProjectButton);
+    projectItem.appendChild(projectItemRightSide);
     
     return projectItem;
 
@@ -65,7 +69,7 @@ const renderNewProjectItem = (e) => {
 
 const editProjectTitleDOM = (e) => {
 
-    let target = e.target.parentNode;
+    let target = e.target.parentNode.parentNode;
     let title = target.querySelector('.projectTitleSidebar');
     let editButton = target.querySelector('.editProjectTitleButton');
     let deleteButton = target.querySelector('.deleteProjectButton');
@@ -98,11 +102,7 @@ const editProjectTitleDOM = (e) => {
 
         } else {
 
-            if (checkDuplication('projectTitle', titleInput.value)) {
-
-                alert('That title already exists!');
-
-            } else {
+            if (title.textContent == titleInput.value) {
 
                 editProjectTitle(titleInput.value, title.textContent);
 
@@ -114,7 +114,27 @@ const editProjectTitleDOM = (e) => {
                 cancelButton.replaceWith(deleteButton);
 
                 title.textContent = titleInput.value;
-                deleteButton.style.visibility = 'visible';
+
+            } else {
+
+                if (checkDuplication('projectTitle', titleInput.value)) {
+
+                    alert('That title already exists!');
+
+                } else {
+
+                    editProjectTitle(titleInput.value, title.textContent);
+
+                    const mainTitle = document.querySelector('.projectTitle');
+                    if (mainTitle && (mainTitle.textContent == title.textContent)) mainTitle.textContent = titleInput.value;
+    
+                    titleInput.replaceWith(title);
+                    sendButton.replaceWith(editButton);
+                    cancelButton.replaceWith(deleteButton);
+    
+                    title.textContent = titleInput.value;
+
+                }
             }
         }
     });
@@ -147,7 +167,7 @@ const editProjectDescriptionDOM = (e) => {
 
 const deleteProjectDOM = (e) => {
     
-    const parent = e.target.parentNode;
+    const parent = e.target.parentNode.parentNode;
     const sidebarTitle = parent.querySelector('.projectTitleSidebar');
     const mainTitle = document.querySelector('.projectTitle');
 
