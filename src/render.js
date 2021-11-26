@@ -74,17 +74,20 @@ const editProjectTitleDOM = (e) => {
     let editButton = target.querySelector('.editProjectTitleButton');
     let deleteButton = target.querySelector('.deleteProjectButton');
     let titleInput = document.createElement('input');
-    let sendButton = document.createElement('button');
-    let cancelButton = document.createElement('button');
+    let sendButton = document.createElement('span');
+    let cancelButton = document.createElement('span');
 
     title.replaceWith(titleInput);
     editButton.replaceWith(sendButton);
     deleteButton.replaceWith(cancelButton);
 
-    cancelButton.textContent = "Cancel";
-    
     titleInput.value = title.textContent;
-    sendButton.textContent = "OK";
+
+    cancelButton.textContent = "highlight_off";
+    cancelButton.classList.add('material-icons');
+    
+    sendButton.textContent = "check_circle_outline";
+    sendButton.classList.add('material-icons');
 
     cancelButton.addEventListener('click', () => {
 
@@ -562,8 +565,10 @@ const editTaskDOM = (e) => {
     let dueDateInput = document.createElement('input');
     dueDateInput.type = 'date';
     let detailsInput = document.createElement('input');
-    let sendButton = document.createElement('button');
-    let cancelButton = document.createElement('button');
+    let sendButton = document.createElement('span');
+    sendButton.classList.add('material-icons');
+    let cancelButton = document.createElement('span');
+    cancelButton.classList.add('material-icons');
 
     priority.replaceWith(priorityInput);
     title.replaceWith(titleInput);
@@ -575,8 +580,8 @@ const editTaskDOM = (e) => {
     titleInput.value = title.textContent;
     dueDateInput.value = dueDate.textContent;
     detailsInput.value = getDetails(title.textContent);
-    sendButton.textContent = "OK";
-    cancelButton.textContent = "Cancel";
+    sendButton.textContent = "check_circle_outline";
+    cancelButton.textContent = "highlight_off";
     checkbox.style.visibility = 'hidden';
 
     cancelButton.addEventListener('click', () => {
