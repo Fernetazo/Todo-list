@@ -10,6 +10,7 @@ body {
     width: 1200px;
     height: 600px;
     font-family: Graphik Web,Helvetica Neue,Helvetica,Arial,sans-serif;
+    cursor:default;
 }
 
 .topBar {
@@ -19,6 +20,11 @@ body {
     height: 80px;
     border: 1px solid black;
     background-color: #dc4c3f;
+    color: white;
+}
+
+.topBar > ico {
+    color: white;
 }
 
 main {
@@ -40,8 +46,20 @@ main {
 .navBarOptions {
     display: flex;
     flex-direction: column;
-    height: 200px;
+    height: 800px;
+}
 
+.home, .today, .week {
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.home:hover, .today:hover, .week:hover {
+    color: orange;
+}
+
+.project {
+    cursor:default;
 }
 
 .home > icon {
@@ -62,7 +80,7 @@ main {
 
 .newProjectButton {
     transition: all 0.3s;
-    visibility: visible;
+    cursor: pointer;
 }
 
 .newProjectButton:before {
@@ -74,12 +92,14 @@ main {
     content: 'add_circle';
 }
 
-.project, .projectItems {
+.project {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .projectItems {
+    display: flex;
+    flex-direction: column;
     height: 380px;
     overflow: auto;
 }
@@ -179,6 +199,27 @@ span:active {
 .done {
     background-color: gray;
 }
+
+.newTaskButtonContainer {
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+}
+
+.newTaskButtonContainer:hover {
+    background-color: yellow;
+    color: red;
+}
+
+.newTaskButton:before {
+    content: 'add';
+    color: green;
+}
+
+.newTaskButton:hover:before {
+    content: 'add_circle';
+}
+
 
 .newProjectModal, .newTaskModal, .detailsModal {
     position: fixed;

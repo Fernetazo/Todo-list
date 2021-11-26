@@ -513,7 +513,6 @@ const renderNewTaskButton = () => {
     newTaskButton.classList.add('material-icons');
     newTaskText.classList.add('newTaskText');
 
-    newTaskButton.textContent = 'add';
     newTaskText.textContent = 'Add new task';
     newTaskButtonContainer.addEventListener('click', showNewTaskModal);
 
