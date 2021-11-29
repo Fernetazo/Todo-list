@@ -158,6 +158,12 @@ main {
     opacity: 1;
 }
 
+.projectDescriptionContainer:hover > span {
+    transition: all 0.3s;
+    visibility: visible;
+    opacity: 1;
+}
+
 .todoItem .todoRightSide > span {
     transition: all 0.3s;
 }

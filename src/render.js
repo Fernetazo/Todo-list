@@ -145,20 +145,22 @@ const editProjectTitleDOM = (e) => {
 
 const editProjectDescriptionDOM = (e) => {
     
-    let target = e.target.parentNode;
+    let target = e.target.parentNode.parentNode;
     let description = target.querySelector('.projectDescription');
     let editButton = target.querySelector('.editProjectDetailsButton');
     let descriptionInput = document.createElement('input');
-    let sendButton = document.createElement('button');
+    let sendButton = document.createElement('span');
+
+    sendButton.classList.add('material-icons');
+    sendButton.textContent = "check_circle_outline";
+    descriptionInput.value = description.textContent;
 
     description.replaceWith(descriptionInput);
     editButton.replaceWith(sendButton);
-    
-    descriptionInput.value = description.textContent;
-    sendButton.textContent = "OK";
 
     sendButton.addEventListener('click', () => {
         
+
         editProjectDescription(descriptionInput.value, description.textContent)
         
         descriptionInput.replaceWith(description);
@@ -381,14 +383,17 @@ const renderProject = (e) => {
     let projectItem = document.createElement('div');
     let projectHeader = document.createElement('div');
     let projectTitle = document.createElement('div');
+    let projectDescriptionContainer = document.createElement('div');
     let projectDescription = document.createElement('div');
-    let editProjectDetailsButton = document.createElement('button');
+    let editProjectDetailsButton = document.createElement('span');
 
     projectItem.classList.add('projectItem');
     projectHeader.classList.add('projectHeader');
     projectTitle.classList.add('projectTitle');
+    projectDescriptionContainer.classList.add('projectDescriptionContainer');
     projectDescription.classList.add('projectDescription');
     editProjectDetailsButton.classList.add('editProjectDetailsButton');
+    editProjectDetailsButton.classList.add('material-icons');
 
     projectTitle.textContent = targetProject.title;
     projectDescription.textContent = targetProject.description;
@@ -397,8 +402,9 @@ const renderProject = (e) => {
     editProjectDetailsButton.addEventListener('click', editProjectDescriptionDOM);
 
     projectHeader.appendChild(projectTitle);
-    projectHeader.appendChild(projectDescription);
-    projectHeader.appendChild(editProjectDetailsButton);  
+    projectHeader.appendChild(projectDescriptionContainer);
+    projectDescriptionContainer.appendChild(projectDescription);
+    projectDescriptionContainer.appendChild(editProjectDetailsButton);  
     projectItem.appendChild(projectHeader);
 
     mainDisplay.appendChild(projectItem);

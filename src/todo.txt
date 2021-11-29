@@ -1,4 +1,4 @@
 TO DO:
-    UI: Adding project text behavior like new project button
+    UI: Add visibility to edit button when hovering a project's detail
     Placeholder in grey when editing or adding new task
     Add restrictions between user's action (dont let user add new task when editing)
