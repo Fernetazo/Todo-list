@@ -198,7 +198,7 @@ const prepareListeners = () => {
     const week = document.querySelector('.week');
     week.addEventListener('click', renderWeek);
 
-    const newProjectButton = document.querySelector('.newProjectButton');
+    const newProjectButton = document.querySelector('.project');
     newProjectButton.addEventListener('click', showNewProjectModal);
 }
 
