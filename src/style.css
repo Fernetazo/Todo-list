@@ -141,18 +141,28 @@ main {
     border: 1px solid black;
 }
 
-.todos {
+.projectHeader {
     display: flex;
-    flex-direction: column;
-    height: 600px;
-    overflow: auto;
+    align-items: center;
+    height: 10%;
+    margin-left: 10px;
+    font-size: 40px;
 }
 
-.todosDone {
+.todos, .todosDone {
     display: flex;
     flex-direction: column;
-    height: 300px;
     overflow: auto;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.todos {
+    height: 70%;
+}
+
+.todosDone {    
+    height: 30%;
 }
 
 .projectItem, .todoItem, .todoLeftSide, .todoRightSide, .projectItemRightSide {
@@ -161,12 +171,17 @@ main {
     align-items: center;
 }
 
-.todoLeftSide, .todoRightSide {
-    width: 50%;
+.todoItem {
+    font-size: 30px;
+    margin-bottom: 20px;
 }
 
-.todoLeftSide {
-    justify-content: flex-start;
+.projectItemRightSide{
+    margin-right: 10px;
+}
+
+.todoLeftSide, .todoRightSide {
+    width: 50%;
 }
 
 .todoRightSide {
@@ -218,23 +233,29 @@ span:active {
 }
 
 .priority {
-    width: 5px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
 }
 
 .High {
-    background-color: red;
+    border: solid 2px red;
+    background-color: orangered;
 }
 
 .Medium {
+    border: solid 2px orange;
     background-color: yellow;
 }
 
 .Low {
-    background-color: blue;
+    border: solid 2px green;
+    background-color: greenyellow;
 }
 
 .done {
-    background-color: gray;
+    border: solid 2px grey;
+    background-color: lightgray;
 }
 
 .newTaskButtonContainer {
@@ -266,6 +287,10 @@ span:active {
 	border-radius: 3px;
 	display: inline-block;
 	position: relative;
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 34px;
+    width: 34px;
 }
 
 .checkbox:active, .checkbox:checked:active {
@@ -281,7 +306,7 @@ span:active {
 
 .checkbox:checked:after {
 	content: '\2714';
-	font-size: 14px;
+	font-size: 30px;
 	position: absolute;
 	top: 0px;
 	left: 3px;
