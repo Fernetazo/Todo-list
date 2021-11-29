@@ -7,8 +7,8 @@ body {
     display: flex;
     flex-direction: column;
     margin: 0;
-    width: 1200px;
-    height: 600px;
+    width: 1920px;
+    height: 965px;
     font-family: Graphik Web,Helvetica Neue,Helvetica,Arial,sans-serif;
     cursor:default;
 }
@@ -17,41 +17,59 @@ body {
     display:flex;
     flex-direction: row;
     align-items: center;
-    height: 80px;
+    height: 10%;
     border: 1px solid black;
     background-color: #dc4c3f;
     color: white;
+    font-size: 50px;
 }
 
-.topBar > ico {
+icon {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.topBar > icon {
     color: white;
+    font-size: 75px;
 }
 
 main {
     display: flex;
     flex-direction: row;
     border: 1px solid violet;
-    height: 100%;
+    height: 90%;
 }
 
 .navBar {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 200px;
+    width: 300px;
     border: 1px solid yellow;
-    background-color: #f5f6f7;
+    background-color: #e9e9e9;
 }
 
 .navBarOptions {
     display: flex;
     flex-direction: column;
-    height: 800px;
+    height: 90%;
 }
 
-.home, .today, .week {
+.bottomNavBar {
+    display: flex;
+    flex-direction: row;
+    height: 10%;
+}
+
+.home, .today, .week, .project {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     transition: all 0.3s;
     cursor: pointer;
+    height: 8%;
+    font-size: 25px;
 }
 
 .home:hover, .today:hover, .week:hover {
@@ -82,9 +100,14 @@ main {
 .projectItems {
     display: flex;
     flex-direction: column;
-    height: 380px;
+    height: 68%;
     overflow: auto;
     cursor: pointer;
+}
+
+.projectItem {
+    justify-content: space-between;
+    margin-bottom: 10px;
 }
 
 .project:hover {
@@ -104,6 +127,11 @@ main {
 .newProjectButton:before {
     content: 'add';
     color: green;
+}
+
+.projectTitleSidebar {
+    margin-left: 10px;
+    font-size: 20px;
 }
 
 .mainDisplay {
@@ -127,9 +155,10 @@ main {
     overflow: auto;
 }
 
-.todoItem, .todoLeftSide, .todoRightSide {
+.projectItem, .todoItem, .todoLeftSide, .todoRightSide, .projectItemRightSide {
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 
 .todoLeftSide, .todoRightSide {
