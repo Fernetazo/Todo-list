@@ -1,7 +1,6 @@
 import { firstRender } from './render';
 import { format } from 'date-fns';
 import './style.css';
-import Icon from './GitHubIcon.png';
 
 class Project {
     constructor(title, description) {

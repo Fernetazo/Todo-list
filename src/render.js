@@ -1,5 +1,6 @@
 import { mainTODOlist, projects } from './index.js';
 import { format, isThisWeek, parseISO, formatDistance, subDays } from 'date-fns';
+import Icon from './GitHubIcon.png';
 import { submitNewProject, 
          makeNewTask, 
          editProjectTitle, 
@@ -24,6 +25,15 @@ const firstRender = () => {
     renderNonProjectTitle('H O M E');
 
     renderTODOList(mainTODOlist);
+
+    const gitIcon = document.createElement('img');
+    gitIcon.src = Icon;
+    gitIcon.alt = 'GitHub icon';
+
+    const a = document.createElement('a');
+    a.appendChild(gitIcon);
+    a.href = 'https://github.com/Fernetazo/Todo-list';
+    document.querySelector('.madeByText').after(a);
 
 }
 
