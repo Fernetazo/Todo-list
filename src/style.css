@@ -8,7 +8,7 @@ body {
     flex-direction: column;
     margin: 0;
     width: 1920px;
-    height: 965px;
+    height: 968px;
     font-family: Graphik Web,Helvetica Neue,Helvetica,Arial,sans-serif;
     cursor:default;
 }
@@ -82,23 +82,24 @@ main {
 }
 
 .home > icon {
-    color: green;
+    color: rgb(58, 149, 58);
 }
 
 .today > icon {
-    color: blue;
+    color: rgb(88, 88, 255);
 }
 
 .week > icon {
-    color: red;
+    color: rgb(255, 95, 95);
 }
 
 .home > icon, .today > icon, .week > icon, .project > icon {
-    font-size: 35px;
+    font-size: 40px;
+    margin-bottom: 6px;
 } 
 
 .project > icon {
-    color:purple;
+    color:rgb(122, 69, 122);
 }
 
 .project {
@@ -117,7 +118,6 @@ main {
 }
 
 .projectItem {
-    width: inherit;
     justify-content: space-between;
     margin-bottom: 20px;
 }
@@ -155,10 +155,12 @@ main {
 .projectHeader {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     min-height: 10%;
     margin-top: 30px;
-    margin-left: 30px;
     margin-bottom: 30px;
+    margin-left: 150px;
+    margin-right: 200px;
     font-size: 40px;
     font-weight: bold;
 }
@@ -167,7 +169,6 @@ main {
     font-size: 30px;
     margin-top: 20px;
     font-weight: normal;
-    width: inherit;
 }
 
 .todos, .todosDone {
@@ -226,7 +227,7 @@ main {
 }
 
 .todoItem:hover, .projectItem:hover {
-    background-color: #e0e2e5;
+    background-color: #f6f6f6;
 }
 
 .projectItem:hover .projectItemRightSide > span {
@@ -296,17 +297,17 @@ span:active {
     flex-direction: row;
     cursor: pointer;
     height: 40px;
-    margin-left: 200px;
+    margin-left: 187px;
     margin-right: 200px;
-    font-size: 30px;
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 25px;
     color: grey;
+    font-size: 30px;
     font-weight: bold;
 }
 
 .newTaskButtonContainer > icon {
-    font-size: 35px;
+    font-size: 40px;
 }
 
 .newTaskButtonContainer:hover {
@@ -322,6 +323,13 @@ span:active {
 .newTaskButton::before {
     content: 'add';
     color: grey;
+}
+
+.newTaskText {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8px;
 }
 
 .checkbox {
@@ -379,4 +387,25 @@ span:active {
     border: 1px solid #888;
     width: 20%; 
     border-radius: 20px;
+}
+
+.madeBy {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: inherit;
+    width: 100%;
+    justify-content: space-around;
+    background-color: rgb(199, 88, 78);
+}
+
+.madeByText {
+    font-size: 25px;
+    color: white;
+    font-weight: bold;
+}
+
+img {
+    height: 50px;
+    width: 50px;
 }
