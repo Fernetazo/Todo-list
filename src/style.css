@@ -18,10 +18,15 @@ body {
     flex-direction: row;
     align-items: center;
     height: 10%;
-    background-color: #dc4c3f;
+    background-color: rgb(199, 88, 78);
     color: white;
-    font-size: 50px;
+    font-size: 55px;
     font-weight: bold;
+}
+
+.mainTitle {
+    display: flex;
+    align-items: center;
 }
 
 icon {
@@ -32,6 +37,7 @@ icon {
 .topBar > icon {
     color: white;
     font-size: 75px;
+    margin-bottom: 10px;
 }
 
 main {
@@ -87,6 +93,10 @@ main {
     color: red;
 }
 
+.home > icon, .today > icon, .week > icon, .project > icon {
+    font-size: 35px;
+} 
+
 .project > icon {
     color:purple;
 }
@@ -107,13 +117,14 @@ main {
 }
 
 .projectItem {
+    width: inherit;
     justify-content: space-between;
     margin-bottom: 20px;
 }
 
 .project:hover {
     background-color: yellow;
-    color: red;
+    color: green;
     cursor: pointer;
 }
 
@@ -132,7 +143,7 @@ main {
 
 .projectTitleSidebar {
     margin-left: 10px;
-    font-size: 20px;
+    font-size: 25px;
 }
 
 .mainDisplay {
@@ -143,12 +154,20 @@ main {
 
 .projectHeader {
     display: flex;
-    align-items: center;
-    height: 10%;
+    flex-direction: column;
+    min-height: 10%;
     margin-top: 30px;
     margin-left: 30px;
+    margin-bottom: 30px;
     font-size: 40px;
     font-weight: bold;
+}
+
+.projectDescriptionContainer {
+    font-size: 30px;
+    margin-top: 20px;
+    font-weight: normal;
+    width: inherit;
 }
 
 .todos, .todosDone {
@@ -179,8 +198,9 @@ main {
     margin-bottom: 20px;
 }
 
-.projectItemRightSide{
+.projectItemRightSide > span {
     margin-right: 10px;
+    font-size: 35px;
 }
 
 .todoLeftSide, .todoRightSide {
@@ -189,6 +209,16 @@ main {
 
 .todoRightSide {
     justify-content: center;
+}
+
+.todoRightSide > span {
+    font-size: 35px;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.dueDate {
+    margin-right: 90px;
 }
 
 .todoItem, .projectItem {
@@ -243,12 +273,12 @@ span:active {
 
 .High {
     border: solid 2px red;
-    background-color: orangered;
+    background-color:lightcoral;
 }
 
 .Medium {
     border: solid 2px orange;
-    background-color: yellow;
+    background-color:gold;
 }
 
 .Low {
@@ -273,6 +303,10 @@ span:active {
     margin-bottom: 10px;
     color: grey;
     font-weight: bold;
+}
+
+.newTaskButtonContainer > icon {
+    font-size: 35px;
 }
 
 .newTaskButtonContainer:hover {

@@ -387,7 +387,6 @@ const renderProject = (e) => {
     let projectDescription = document.createElement('div');
     let editProjectDetailsButton = document.createElement('span');
 
-    projectItem.classList.add('projectItem');
     projectHeader.classList.add('projectHeader');
     projectTitle.classList.add('projectTitle');
     projectDescriptionContainer.classList.add('projectDescriptionContainer');
@@ -405,9 +404,8 @@ const renderProject = (e) => {
     projectHeader.appendChild(projectDescriptionContainer);
     projectDescriptionContainer.appendChild(projectDescription);
     projectDescriptionContainer.appendChild(editProjectDetailsButton);  
-    projectItem.appendChild(projectHeader);
 
-    mainDisplay.appendChild(projectItem);
+    mainDisplay.appendChild(projectHeader);
 
     renderTODOList(targetProject.TODOlist);        
 };
