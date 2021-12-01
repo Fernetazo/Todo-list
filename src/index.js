@@ -1,4 +1,4 @@
-import { firstRender } from './render';
+import { firstRender, createGitHubIcon } from './render';
 import { format } from 'date-fns';
 import './style.css';
 
@@ -58,5 +58,6 @@ if (!projects) {
 }
 
 firstRender();
+createGitHubIcon();
 
 export  {mainTODOlist, projects, Project, singleTODO};

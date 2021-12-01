@@ -1,5 +1,5 @@
 import { mainTODOlist, projects } from './index.js';
-import { format, isThisWeek, parseISO, formatDistance, subDays } from 'date-fns';
+import { format, isThisWeek, parseISO } from 'date-fns';
 import Icon from './GitHubIcon.png';
 import { submitNewProject, 
          makeNewTask, 
@@ -25,6 +25,10 @@ const firstRender = () => {
     renderNonProjectTitle('H O M E');
 
     renderTODOList(mainTODOlist);
+
+}
+
+const createGitHubIcon = () => {
 
     const gitIcon = document.createElement('img');
     gitIcon.src = Icon;
@@ -755,4 +759,5 @@ export { firstRender,
          renderNewProjectItem, 
          renderSingleNewProjectItem, 
          renderTODOList, 
-         renderSingleTODO };
+         renderSingleTODO,
+         createGitHubIcon };
