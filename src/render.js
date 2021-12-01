@@ -121,7 +121,7 @@ const editProjectTitleDOM = (e) => {
       editProjectTitle(titleInput.value, title.textContent);
 
       const mainTitle = document.querySelector('.projectTitle');
-      if (mainTitle && (mainTitle.textContent === title.textContent)) {
+      if (mainTitle && mainTitle.textContent === title.textContent) {
         mainTitle.textContent = titleInput.value;
       }
 
@@ -136,7 +136,7 @@ const editProjectTitleDOM = (e) => {
       editProjectTitle(titleInput.value, title.textContent);
 
       const mainTitle = document.querySelector('.projectTitle');
-      if (mainTitle && (mainTitle.textContent === title.textContent)) {
+      if (mainTitle && mainTitle.textContent === title.textContent) {
         mainTitle.textContent = titleInput.value;
       }
 
@@ -179,7 +179,11 @@ const deleteProjectDOM = (e) => {
     const sidebarTitle = parent.querySelector('.projectTitleSidebar');
     const mainTitle = document.querySelector('.projectTitle');
 
-    if ((sidebarTitle && mainTitle) && (sidebarTitle.textContent === mainTitle.textContent)) {
+    if (
+      sidebarTitle &&
+      mainTitle &&
+      sidebarTitle.textContent === mainTitle.textContent
+    ) {
       clearMainDisplay();
     }
 
@@ -219,11 +223,11 @@ const showNewProjectModal = () => {
   submitButton.textContent = 'Submit new project';
 
   submitButton.addEventListener('click', () => {
-    (!titleInput.value)
+    !titleInput.value
       ? alert('Something is missing')
       : checkDuplication('projectTitle', titleInput.value)
-        ? alert('That title already exists!')
-        : submitNewProject();
+      ? alert('That title already exists!')
+      : submitNewProject();
   });
 
   form.appendChild(titleLabel);
@@ -266,9 +270,11 @@ const showNewTaskModal = () => {
   submitButton.textContent = 'Submit new task';
 
   submitButton.addEventListener('click', () => {
-    (!priority.value || !title.value || !dueDate.value)
+    !priority.value || !title.value || !dueDate.value
       ? alert('Something is missing')
-      : checkDuplication('TODOtitle', title.value) ? alert('That title already exists!') : makeNewTask();
+      : checkDuplication('TODOtitle', title.value)
+      ? alert('That title already exists!')
+      : makeNewTask();
   });
 
   const optionDefault = document.createElement('option');
@@ -329,7 +335,9 @@ const renderToday = () => {
   clearMainDisplay();
   renderNonProjectTitle('T O D A Y');
 
-  const array = mainTODOlist.filter((e) => e.dueDate === format(new Date(), 'yyyy-MM-dd') && e.checked === false);
+  const array = mainTODOlist.filter(
+    (e) => e.dueDate === format(new Date(), 'yyyy-MM-dd') && e.checked === false
+  );
   renderTODOList(array);
   document.querySelector('.newTaskButtonContainer').style.visibility = 'hidden';
 };
@@ -339,7 +347,7 @@ const renderWeek = () => {
   renderNonProjectTitle('W E E K');
 
   const array = mainTODOlist.filter(
-    (e) => isThisWeek(parseISO(e.dueDate), 0) && e.checked === false,
+    (e) => isThisWeek(parseISO(e.dueDate), 0) && e.checked === false
   );
   renderTODOList(array);
   document.querySelector('.newTaskButtonContainer').style.visibility = 'hidden';
@@ -355,7 +363,9 @@ const renderNonProjectTitle = (title) => {
 
 const renderProject = (e) => {
   clearMainDisplay();
-  const targetProject = projects.find((project) => project.title === e.target.textContent);
+  const targetProject = projects.find(
+    (project) => project.title === e.target.textContent
+  );
 
   const mainDisplay = document.querySelector('.mainDisplay');
 
@@ -568,7 +578,7 @@ const editTaskDOM = (e) => {
       detailsInput,
       sendButton,
       cancelButton,
-      checkbox,
+      checkbox
     );
   });
 
@@ -589,26 +599,26 @@ const editTaskDOM = (e) => {
         detailsInput,
         sendButton,
         cancelButton,
-        checkbox,
+        checkbox
       );
     } else {
       checkDuplication('TODOtitle', titleInput.value)
         ? alert('That title already exists!')
         : sendEditDOM(
-          priority,
-          title,
-          dueDate,
-          detailsButton,
-          editButton,
-          deleteButton,
-          priorityInput,
-          titleInput,
-          dueDateInput,
-          detailsInput,
-          sendButton,
-          cancelButton,
-          checkbox,
-        );
+            priority,
+            title,
+            dueDate,
+            detailsButton,
+            editButton,
+            deleteButton,
+            priorityInput,
+            titleInput,
+            dueDateInput,
+            detailsInput,
+            sendButton,
+            cancelButton,
+            checkbox
+          );
     }
   });
 };
@@ -626,7 +636,7 @@ const cancelEditDOM = (
   detailsInput,
   sendButton,
   cancelButton,
-  checkbox,
+  checkbox
 ) => {
   priorityInput.replaceWith(priority);
   titleInput.replaceWith(title);
@@ -650,14 +660,14 @@ const sendEditDOM = (
   detailsInput,
   sendButton,
   cancelButton,
-  checkbox,
+  checkbox
 ) => {
   editTask(
     priorityInput.value,
     titleInput.value,
     dueDateInput.value,
     title.textContent,
-    detailsInput.value,
+    detailsInput.value
   );
 
   priorityInput.replaceWith(priority);
@@ -733,9 +743,12 @@ const changeDoneStatusDOM = (e) => {
     priority.classList.add('done');
 
     // Get (logically) the array index where the task will be put
-    const finder = Array.from(todosDone.children).find((child) => getIndex(child.querySelector('.TODOTitle').textContent) > index);
+    const finder = Array.from(todosDone.children).find(
+      (child) => getIndex(child.querySelector('.TODOTitle').textContent) > index
+    );
+
     // Put task before found index or last one
-    (finder) ? finder.before(target) : todosDone.appendChild(target);
+    finder ? finder.before(target) : todosDone.appendChild(target);
   } else {
     title.style.color = 'black';
     dueDate.style.color = 'black';
@@ -744,9 +757,11 @@ const changeDoneStatusDOM = (e) => {
     priority.classList.remove('done');
 
     // Get (logically) the array index where the task will be put
-    const finder = Array.from(todos.children).find((child) => getIndex(child.querySelector('.TODOTitle').textContent) > index);
+    const finder = Array.from(todos.children).find(
+      (child) => getIndex(child.querySelector('.TODOTitle').textContent) > index
+    );
     // Put task before found index or last one
-    (finder) ? finder.before(target) : todos.appendChild(target);
+    finder ? finder.before(target) : todos.appendChild(target);
   }
 
   changeDoneStatus(status, title.textContent);

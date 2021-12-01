@@ -3,9 +3,7 @@
 /* eslint-disable no-use-before-define */
 /* eslint-disable import/no-cycle */
 
-import {
-  mainTODOlist, SingleTODO, projects, Project,
-} from './index';
+import { mainTODOlist, SingleTODO, projects, Project } from './index';
 import { renderSingleNewProjectItem, renderSingleTODO } from './render';
 
 function submitNewProject() {
@@ -19,7 +17,9 @@ function submitNewProject() {
 }
 
 function editProjectTitle(title, targetTitle) {
-  const indexProject = projects.findIndex((project) => project.title === targetTitle);
+  const indexProject = projects.findIndex(
+    (project) => project.title === targetTitle
+  );
 
   projects[indexProject].title = title;
 
@@ -27,7 +27,9 @@ function editProjectTitle(title, targetTitle) {
 }
 
 function editProjectDescription(description, targetDescription) {
-  const indexProject = projects.findIndex((project) => project.description === targetDescription);
+  const indexProject = projects.findIndex(
+    (project) => project.description === targetDescription
+  );
 
   projects[indexProject].description = description;
 
@@ -35,8 +37,12 @@ function editProjectDescription(description, targetDescription) {
 }
 
 function deleteProject(sidebarTitle) {
-  const targetProject = projects.find((project) => project.title === sidebarTitle.textContent);
-  const index = projects.findIndex((project) => project.title === targetProject.title);
+  const targetProject = projects.find(
+    (project) => project.title === sidebarTitle.textContent
+  );
+  const index = projects.findIndex(
+    (project) => project.title === targetProject.title
+  );
 
   projects.splice([index], 1);
 
@@ -53,8 +59,12 @@ function makeNewTask() {
   const details = newTaskForm[3].value;
 
   if (target) {
-    const index = projects.findIndex((project) => project.title === target.textContent);
-    projects[index].TODOlist.push(new SingleTODO(priority, false, title, dueDate, details));
+    const index = projects.findIndex(
+      (project) => project.title === target.textContent
+    );
+    projects[index].TODOlist.push(
+      new SingleTODO(priority, false, title, dueDate, details)
+    );
     renderSingleTODO(projects[index].TODOlist.at(-1));
   } else {
     mainTODOlist.push(new SingleTODO(priority, false, title, dueDate, details));
@@ -68,11 +78,17 @@ function deleteTask(e) {
   const target = document.querySelector('.projectTitle');
 
   if (target) {
-    const indexProject = projects.findIndex((project) => project.title === target.textContent);
-    const indexTODO = projects[indexProject].TODOlist.findIndex((task) => task === e);
+    const indexProject = projects.findIndex(
+      (project) => project.title === target.textContent
+    );
+    const indexTODO = projects[indexProject].TODOlist.findIndex(
+      (task) => task === e
+    );
     projects[indexProject].TODOlist.splice(indexTODO, 1);
   } else {
-    const index = mainTODOlist.findIndex((mainTODOlist) => mainTODOlist.title === e);
+    const index = mainTODOlist.findIndex(
+      (mainTODOlist) => mainTODOlist.title === e
+    );
     mainTODOlist.splice(index, 1);
   }
 
@@ -83,15 +99,21 @@ function editTask(priority, title, dueDate, targetTitle, details) {
   const target = document.querySelector('.projectTitle');
 
   if (target) {
-    const indexProject = projects.findIndex((project) => project.title === target.textContent);
-    const indexTODO = projects[indexProject].TODOlist.findIndex((task) => task.title === targetTitle);
+    const indexProject = projects.findIndex(
+      (project) => project.title === target.textContent
+    );
+    const indexTODO = projects[indexProject].TODOlist.findIndex(
+      (task) => task.title === targetTitle
+    );
 
     projects[indexProject].TODOlist[indexTODO].priority = priority;
     projects[indexProject].TODOlist[indexTODO].title = title;
     projects[indexProject].TODOlist[indexTODO].dueDate = dueDate;
     projects[indexProject].TODOlist[indexTODO].details = details;
   } else {
-    const index = mainTODOlist.findIndex((mainTODOlist) => mainTODOlist.title === targetTitle);
+    const index = mainTODOlist.findIndex(
+      (mainTODOlist) => mainTODOlist.title === targetTitle
+    );
     mainTODOlist[index].priority = priority;
     mainTODOlist[index].title = title;
     mainTODOlist[index].dueDate = dueDate;
@@ -105,27 +127,39 @@ function getDetails(targetTitle) {
   const target = document.querySelector('.projectTitle');
 
   if (target) {
-    const indexProject = projects.findIndex((project) => project.title === target.textContent);
-    const indexTODO = projects[indexProject].TODOlist.findIndex((task) => task.title === targetTitle);
+    const indexProject = projects.findIndex(
+      (project) => project.title === target.textContent
+    );
+    const indexTODO = projects[indexProject].TODOlist.findIndex(
+      (task) => task.title === targetTitle
+    );
 
-    return (projects[indexProject].TODOlist[indexTODO].details);
+    return projects[indexProject].TODOlist[indexTODO].details;
   }
 
-  const index = mainTODOlist.findIndex((mainTODOlist) => mainTODOlist.title === targetTitle);
+  const index = mainTODOlist.findIndex(
+    (mainTODOlist) => mainTODOlist.title === targetTitle
+  );
 
-  return (mainTODOlist[index].details);
+  return mainTODOlist[index].details;
 }
 
 function changeDoneStatus(status, targetTitle) {
   const target = document.querySelector('.projectTitle');
 
   if (target) {
-    const indexProject = projects.findIndex((project) => project.title === target.textContent);
-    const indexTODO = projects[indexProject].TODOlist.findIndex((task) => task.title === targetTitle);
+    const indexProject = projects.findIndex(
+      (project) => project.title === target.textContent
+    );
+    const indexTODO = projects[indexProject].TODOlist.findIndex(
+      (task) => task.title === targetTitle
+    );
 
     projects[indexProject].TODOlist[indexTODO].checked = status;
   } else {
-    const index = mainTODOlist.findIndex((mainTODOlist) => mainTODOlist.title === targetTitle);
+    const index = mainTODOlist.findIndex(
+      (mainTODOlist) => mainTODOlist.title === targetTitle
+    );
 
     mainTODOlist[index].checked = status;
   }
@@ -137,13 +171,19 @@ function getIndex(targetTitle) {
   const target = document.querySelector('.projectTitle');
 
   if (target) {
-    const indexProject = projects.findIndex((project) => project.title === target.textContent);
-    const indexTODO = projects[indexProject].TODOlist.findIndex((task) => task.title === targetTitle);
+    const indexProject = projects.findIndex(
+      (project) => project.title === target.textContent
+    );
+    const indexTODO = projects[indexProject].TODOlist.findIndex(
+      (task) => task.title === targetTitle
+    );
 
     return indexTODO;
   }
 
-  const index = mainTODOlist.findIndex((mainTODOlist) => mainTODOlist.title === targetTitle);
+  const index = mainTODOlist.findIndex(
+    (mainTODOlist) => mainTODOlist.title === targetTitle
+  );
 
   return index;
 }
@@ -153,8 +193,12 @@ function checkDuplication(type, input) {
     const projectTitle = document.querySelector('.projectTitle');
 
     if (projectTitle) {
-      const indexProject = projects.findIndex((project) => project.title === projectTitle.textContent);
-      return projects[indexProject].TODOlist.some((task) => task.title === input);
+      const indexProject = projects.findIndex(
+        (project) => project.title === projectTitle.textContent
+      );
+      return projects[indexProject].TODOlist.some(
+        (task) => task.title === input
+      );
     }
 
     return mainTODOlist.some((task) => task.title === input);
