@@ -4,4 +4,4 @@ TO DO:
     Add restrictions between user's action (dont let user add new task when editing)
 
 About webpack image loading. You have to put publicpath:
-https://stackoverflow.com/questions/37671342/how-to-load-image-files-with-webpack-file-loader#comment66628150_37673142
+https://stackoverflow.com/questions/65833373/webpack-url-image-wont-show-in-dev-server-localhost
