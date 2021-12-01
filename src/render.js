@@ -22,6 +22,7 @@ const firstRender = () => {
     });
     
     prepareListeners();
+    
     renderNonProjectTitle('H O M E');
 
     renderTODOList(mainTODOlist);
@@ -30,7 +31,7 @@ const firstRender = () => {
 
 const createGitHubIcon = () => {
 
-    const gitIcon = document.createElement('img');
+    const gitIcon = new Image();
     gitIcon.src = Icon;
     gitIcon.alt = 'GitHub icon';
 
