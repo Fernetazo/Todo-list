@@ -5,3 +5,9 @@ TO DO:
 
 About webpack image loading. You have to put publicpath:
 https://stackoverflow.com/questions/65833373/webpack-url-image-wont-show-in-dev-server-localhost
+
+
+Babel guide:
+https://blog.jakoblind.no/babel-preset-env/
+Example code to generate output file tranpiled:
+npx babel input.js --out-file output.js

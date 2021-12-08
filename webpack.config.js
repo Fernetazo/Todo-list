@@ -15,15 +15,27 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|gif)$/,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            outputPath: '',
-            name: '[name].[ext]',
-            url: true,
-            publicPath: '',
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              outputPath: '',
+              name: '[name].[ext]',
+              url: true,
+              publicPath: '',
+            },
           },
-        }],
+        ],
+      },
+      {
+        test: /\.m?js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [['@babel/preset-env', { targets: 'defaults' }]],
+          },
+        },
       },
     ],
   },
